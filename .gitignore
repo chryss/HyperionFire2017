@@ -1,0 +1,52 @@
+*.py[cod]
+
+# C extensions
+*.so
+
+# Packages
+*.egg
+*.egg-info
+dist
+build
+eggs
+parts
+bin
+var
+sdist
+develop-eggs
+.installed.cfg
+lib
+lib64
+
+# Installer logs
+pip-log.txt
+
+# Unit test / coverage reports
+.coverage
+.tox
+nosetests.xml
+
+# test data (large files)
+tests/data/*
+
+
+# TextMate
+*.tmproj
+
+# iPython
+.ipynb_checkpoints
+
+# documentation build directory
+doc/_build/
+doc/_build/*
+
+# images
+*.png
+*.pdf
+*.jpg
+*.jpeg
+*.tiff
+*.TIFF
+*.TIF
+*.tif
+*.gif

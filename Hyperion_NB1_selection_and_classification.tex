@@ -1,0 +1,2185 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass{article}
+
+    
+    
+    \usepackage{graphicx} % Used to insert images
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{color} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    
+
+    
+    
+    \definecolor{orange}{cmyk}{0,0.4,0.8,0.2}
+    \definecolor{darkorange}{rgb}{.71,0.21,0.01}
+    \definecolor{darkgreen}{rgb}{.12,.54,.11}
+    \definecolor{myteal}{rgb}{.26, .44, .56}
+    \definecolor{gray}{gray}{0.45}
+    \definecolor{lightgray}{gray}{.95}
+    \definecolor{mediumgray}{gray}{.8}
+    \definecolor{inputbackground}{rgb}{.95, .95, .85}
+    \definecolor{outputbackground}{rgb}{.95, .95, .95}
+    \definecolor{traceback}{rgb}{1, .95, .95}
+    % ansi colors
+    \definecolor{red}{rgb}{.6,0,0}
+    \definecolor{green}{rgb}{0,.65,0}
+    \definecolor{brown}{rgb}{0.6,0.6,0}
+    \definecolor{blue}{rgb}{0,.145,.698}
+    \definecolor{purple}{rgb}{.698,.145,.698}
+    \definecolor{cyan}{rgb}{0,.698,.698}
+    \definecolor{lightgray}{gray}{0.5}
+    
+    % bright ansi colors
+    \definecolor{darkgray}{gray}{0.25}
+    \definecolor{lightred}{rgb}{1.0,0.39,0.28}
+    \definecolor{lightgreen}{rgb}{0.48,0.99,0.0}
+    \definecolor{lightblue}{rgb}{0.53,0.81,0.92}
+    \definecolor{lightpurple}{rgb}{0.87,0.63,0.87}
+    \definecolor{lightcyan}{rgb}{0.5,1.0,0.83}
+    
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{Hyperion\_NB1\_selection\_and\_classification}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=blue,
+      linkcolor=darkorange,
+      citecolor=darkgreen,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+
+    \section{Hyperion fire detection - August 2014}
+
+
+
+    \subsection{Load prerequisites, filepaths, libraries}
+
+
+    Imports.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{o}{\PYZpc{}}\PY{k}{matplotlib} \PY{n}{inline}
+        \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k+kn}{as} \PY{n+nn}{np}
+        \PY{k+kn}{import} \PY{n+nn}{h5py}
+        \PY{k+kn}{import} \PY{n+nn}{os.path}
+        \PY{k+kn}{import} \PY{n+nn}{random}
+        \PY{k+kn}{import} \PY{n+nn}{time}
+        \PY{k+kn}{import} \PY{n+nn}{pickle}
+        \PY{k+kn}{import} \PY{n+nn}{json}
+        \PY{k+kn}{from} \PY{n+nn}{itertools} \PY{k+kn}{import} \PY{n}{izip\PYZus{}longest}
+        \PY{k+kn}{import} \PY{n+nn}{matplotlib} \PY{k+kn}{as} \PY{n+nn}{mpl}
+        \PY{k+kn}{import} \PY{n+nn}{matplotlib.pyplot} \PY{k+kn}{as} \PY{n+nn}{plt}
+        \PY{k+kn}{from} \PY{n+nn}{pygaarst} \PY{k+kn}{import} \PY{n}{raster}
+        \PY{k+kn}{from} \PY{n+nn}{pygaarst} \PY{k+kn}{import} \PY{n}{landsatutils} \PY{k}{as} \PY{n}{l}
+        \PY{k+kn}{from} \PY{n+nn}{pygaarst} \PY{k+kn}{import} \PY{n}{hyperionutils} \PY{k}{as} \PY{n}{hyp}
+        \PY{k+kn}{from} \PY{n+nn}{pygaarst} \PY{k+kn}{import} \PY{n}{irutils} \PY{k}{as} \PY{n}{ir}
+        \PY{k+kn}{from} \PY{n+nn}{pygaarst} \PY{k+kn}{import} \PY{n}{rasterhelpers} \PY{k}{as} \PY{n}{rh}
+        \PY{k+kn}{import} \PY{n+nn}{brewer2mpl}
+        \PY{c}{\PYZsh{} from scipy import stats}
+        \PY{c}{\PYZsh{}from sklearn.cluster import MiniBatchKMeans}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+WARNING:pygaarst.raster:PROJ4 is not available. Any method requiring coordinate transform will fail.
+    \end{Verbatim}
+
+    Set up plot options.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{n}{bmap} \PY{o}{=} \PY{n}{brewer2mpl}\PY{o}{.}\PY{n}{get\PYZus{}map}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Set1}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{qualitative}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{)}
+        \PY{n}{colors} \PY{o}{=} \PY{n}{bmap}\PY{o}{.}\PY{n}{mpl\PYZus{}colors}
+        \PY{n}{mpl}\PY{o}{.}\PY{n}{rcParams}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{axes.color\PYZus{}cycle}\PY{l+s}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{colors}
+        \PY{n}{mpl}\PY{o}{.}\PY{n}{rcParams}\PY{o}{.}\PY{n}{update}\PY{p}{(}\PY{p}{\PYZob{}}\PY{l+s}{\PYZsq{}}\PY{l+s}{font.size}\PY{l+s}{\PYZsq{}}\PY{p}{:} \PY{l+m+mi}{18}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{font.family}\PY{l+s}{\PYZsq{}}\PY{p}{:} \PY{l+s}{\PYZsq{}}\PY{l+s}{Calibri}\PY{l+s}{\PYZsq{}}\PY{p}{\PYZcb{}}\PY{p}{)}
+\end{Verbatim}
+
+    For interactive work, Pygaarst libraries need re-importing after
+editing.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{n+nb}{reload}\PY{p}{(}\PY{n}{raster}\PY{p}{)}
+        \PY{n+nb}{reload}\PY{p}{(}\PY{n}{ir}\PY{p}{)}
+        \PY{n+nb}{reload}\PY{p}{(}\PY{n}{l}\PY{p}{)}
+        \PY{n+nb}{reload}\PY{p}{(}\PY{n}{hyp}\PY{p}{)}
+        \PY{n+nb}{reload}\PY{p}{(}\PY{n}{rh}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+WARNING:pygaarst.raster:PROJ4 is not available. Any method requiring coordinate transform will fail.
+    \end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}3}]:} <module 'pygaarst.rasterhelpers' from '/Users/chris/Dropbox/research/pygaarst/pygaarst/rasterhelpers.pyc'>
+\end{Verbatim}
+        
+    Directory and file names.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{n}{basedir} \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{/Volumes/SCIENCE/Fire/DATA\PYZus{}BY\PYZus{}PROJECT/HyspIRI\PYZus{}Prep\PYZus{}2014/}\PY{l+s}{\PYZdq{}}
+        \PY{n}{outdir} \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{/Volumes/SCIENCE/Fire/DATA\PYZus{}BY\PYZus{}PROJECT/HyspIRI\PYZus{}Prep\PYZus{}2014/visual/tmp/}\PY{l+s}{\PYZdq{}}
+        \PY{n}{dir\PYZus{}2004} \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{2004Boundary}\PY{l+s}{\PYZdq{}}
+        \PY{n}{dir\PYZus{}2009} \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{2009WoodRiver}\PY{l+s}{\PYZdq{}}
+        \PY{n}{hypscene\PYZus{}2004} \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{EO1H0690142004201110PX}\PY{l+s}{\PYZdq{}}
+        \PY{n}{aliscene\PYZus{}2004} \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{EO1A0690142004201110PX}\PY{l+s}{\PYZdq{}}
+        \PY{n}{landsatscene\PYZus{}2004} \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{LE70690142004201EDC01}\PY{l+s}{\PYZdq{}}
+        \PY{n}{hypscene\PYZus{}2009} \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{EO1H0690142009214110KF}\PY{l+s}{\PYZdq{}}
+        \PY{n}{aliscene\PYZus{}2009} \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{EO1A0690142009214110KF}\PY{l+s}{\PYZdq{}}
+        \PY{n}{landsatscene\PYZus{}2009} \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{LT50680152009215GLC00}\PY{l+s}{\PYZdq{}}  \PY{c}{\PYZsh{} There is also a simultaneous L7 scene, LE70690152009214EDC00, but it\PYZsq{}s stripey}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{n}{hyp2004} \PY{o}{=} \PY{n}{raster}\PY{o}{.}\PY{n}{Hyperionscene}\PY{p}{(}\PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{basedir}\PY{p}{,} \PY{n}{dir\PYZus{}2004}\PY{p}{,} \PY{n}{hypscene\PYZus{}2004}\PY{p}{)}\PY{p}{)}
+        \PY{n}{hyp2004}\PY{o}{.}\PY{n}{infix} \PY{o}{=} \PY{l+s}{\PYZsq{}}\PY{l+s}{\PYZus{}CLIP}\PY{l+s}{\PYZsq{}}
+        \PY{n}{hyp2009} \PY{o}{=} \PY{n}{raster}\PY{o}{.}\PY{n}{Hyperionscene}\PY{p}{(}\PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{basedir}\PY{p}{,} \PY{n}{dir\PYZus{}2009}\PY{p}{,} \PY{n}{hypscene\PYZus{}2009}\PY{p}{)}\PY{p}{)}
+        \PY{n}{hyp2009}\PY{o}{.}\PY{n}{infix} \PY{o}{=} \PY{l+s}{\PYZsq{}}\PY{l+s}{\PYZus{}CLIP}\PY{l+s}{\PYZsq{}}
+\end{Verbatim}
+
+    Select year to work on:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{n}{fireyear} \PY{o}{=} \PY{l+m+mi}{2004}
+        \PY{k}{if} \PY{n}{fireyear} \PY{o}{==} \PY{l+m+mi}{2004}\PY{p}{:}
+            \PY{n}{hypsc} \PY{o}{=} \PY{n}{hyp2004}
+            \PY{n}{firename} \PY{o}{=} \PY{l+s}{\PYZsq{}}\PY{l+s}{boundary}\PY{l+s}{\PYZsq{}}
+        \PY{k}{elif} \PY{n}{fireyear} \PY{o}{==} \PY{l+m+mi}{2009}\PY{p}{:}
+            \PY{n}{hypsc} \PY{o}{=} \PY{n}{hyp2009}
+            \PY{n}{firename} \PY{o}{=} \PY{l+s}{\PYZsq{}}\PY{l+s}{woodriver}\PY{l+s}{\PYZsq{}}
+        \PY{k}{else}\PY{p}{:}
+            \PY{k}{raise} \PY{n+ne}{Exception}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Fireyear not implemented.}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \subsection{Load data: radiance, fire candidate pixels and extended area}
+
+
+    Sample band to use for rough fire detection
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{k+kn}{from} \PY{n+nn}{shapely.geometry} \PY{k+kn}{import} \PY{n}{MultiPoint}
+        \PY{k+kn}{from} \PY{n+nn}{descartes.patch} \PY{k+kn}{import} \PY{n}{PolygonPatch}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{n}{b220} \PY{o}{=} \PY{n}{hypsc}\PY{o}{.}\PY{n}{band220}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} \PY{n}{b220}\PY{o}{.}\PY{n}{radiance}\PY{o}{.}\PY{n}{dtype}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}9}]:} dtype('float32')
+\end{Verbatim}
+        
+
+    \subsubsection{Plot radiance}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{n}{saveout} \PY{o}{=} \PY{n+nb+bp}{False}
+         \PY{n}{f}\PY{p}{,} \PY{n}{ax} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{15}\PY{p}{,} \PY{l+m+mi}{25}\PY{p}{)}\PY{p}{)}
+         \PY{c}{\PYZsh{}output = ax.imshow(b220.radiance, cmap=\PYZsq{}hot\PYZsq{}, clim=(0, 70))}
+         \PY{c}{\PYZsh{}output = ax.pcolor(np.flipud(b220.radiance), cmap=\PYZsq{}hot\PYZsq{}, vmin=0, vmax=70)}
+         \PY{n}{output} \PY{o}{=} \PY{n}{ax}\PY{o}{.}\PY{n}{pcolor}\PY{p}{(}\PY{n}{b220}\PY{o}{.}\PY{n}{radiance}\PY{p}{,} \PY{n}{cmap}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{hot}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{vmin}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{vmax}\PY{o}{=}\PY{l+m+mi}{70}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{ }\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{ fire Band 220, Radiance in \PYZdl{}W / (m\PYZca{}2 }\PY{l+s}{\PYZbs{}}\PY{l+s}{mu m}\PY{l+s}{\PYZbs{}}\PY{l+s}{, sr)\PYZdl{}}\PY{l+s}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n}{fireyear}\PY{p}{,} \PY{n}{firename}\PY{o}{.}\PY{n}{capitalize}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}aspect}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{equal}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{invert\PYZus{}yaxis}\PY{p}{(}\PY{p}{)}
+         \PY{c}{\PYZsh{}ax.set\PYZus{}axis\PYZus{}off()}
+         \PY{k}{if} \PY{n}{fireyear} \PY{o}{==} \PY{l+m+mi}{2004}\PY{p}{:}
+             \PY{n}{position}\PY{o}{=}\PY{n}{f}\PY{o}{.}\PY{n}{add\PYZus{}axes}\PY{p}{(}\PY{p}{[}\PY{l+m+mf}{0.05}\PY{p}{,} \PY{l+m+mf}{0.2}\PY{p}{,} \PY{l+m+mf}{0.85}\PY{p}{,} \PY{l+m+mf}{0.025}\PY{p}{]}\PY{p}{)}
+         \PY{k}{else}\PY{p}{:}
+             \PY{n}{position}\PY{o}{=}\PY{n}{f}\PY{o}{.}\PY{n}{add\PYZus{}axes}\PY{p}{(}\PY{p}{[}\PY{l+m+mf}{0.05}\PY{p}{,} \PY{l+m+mf}{0.01}\PY{p}{,} \PY{l+m+mf}{0.85}\PY{p}{,} \PY{l+m+mf}{0.025}\PY{p}{]}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{colorbar}\PY{p}{(}\PY{n}{output}\PY{p}{,} \PY{n}{orientation}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{horizontal}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{cax}\PY{o}{=}\PY{n}{position}\PY{p}{,} \PY{n}{ticks}\PY{o}{=}\PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{75}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{)}\PY{p}{)}
+         \PY{c}{\PYZsh{}plt.colorbar(output, orientation=\PYZsq{}horizontal\PYZsq{}, pad=0.025, shrink=0.85)}
+         \PY{k}{if} \PY{n}{saveout}\PY{p}{:}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{tight\PYZus{}layout}\PY{p}{(}\PY{p}{)}
+             \PY{n}{outfile} \PY{o}{=} \PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{outdir}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{rad}\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{\PYZus{}plot.png}\PY{l+s}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{n}{fireyear}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{savefig}\PY{p}{(}\PY{n}{outfile}\PY{p}{,}  \PY{n}{bbox\PYZus{}inches}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{tight}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{dpi}\PY{o}{=}\PY{l+m+mi}{150}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Hyperion_NB1_selection_and_classification_files/Hyperion_NB1_selection_and_classification_19_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+
+    \subsubsection{Fire candidate pixels and extended area}
+
+
+    Defining a threshold for radiance and an envelope at a certain distance
+of the convex hull of all the fire candidate pixels. Ground sampling
+distance for Hyperion is 30 m, so a deltaR of 10 means 300 m.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}11}]:} \PY{n}{threshRad} \PY{o}{=} \PY{l+m+mf}{5.}
+         \PY{n}{deltaR} \PY{o}{=} \PY{l+m+mi}{10} 
+\end{Verbatim}
+
+    Note that the j-index corresponds to the y-coordinate, starting at the
+top(-left) of the image.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} \PY{n}{PRINT} \PY{o}{=} \PY{n+nb+bp}{False}
+         
+         \PY{n}{i\PYZus{}fire}\PY{p}{,} \PY{n}{j\PYZus{}fire} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{where}\PY{p}{(}\PY{n}{b220}\PY{o}{.}\PY{n}{radiance} \PY{o}{\PYZgt{}} \PY{n}{threshRad}\PY{p}{)}
+         \PY{n}{firepoints} \PY{o}{=} \PY{n}{MultiPoint}\PY{p}{(}\PY{n+nb}{zip}\PY{p}{(}\PY{n}{j\PYZus{}fire}\PY{p}{,} \PY{n}{i\PYZus{}fire}\PY{p}{)}\PY{p}{)}
+         
+         \PY{k}{if} \PY{n}{PRINT}\PY{p}{:}
+             \PY{k}{print}\PY{p}{(}\PY{n+nb}{zip}\PY{p}{(}\PY{n}{i\PYZus{}fire}\PY{p}{,} \PY{n}{j\PYZus{}fire}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}13}]:} \PY{n}{MAKEPLOT} \PY{o}{=} \PY{n+nb+bp}{True}
+         
+         \PY{n}{hull2} \PY{o}{=} \PY{n}{firepoints}\PY{o}{.}\PY{n}{convex\PYZus{}hull}
+         \PY{n}{dilated2} \PY{o}{=} \PY{n}{hull2}\PY{o}{.}\PY{n}{buffer}\PY{p}{(}\PY{n}{deltaR}\PY{p}{)}
+         \PY{n}{patch2} \PY{o}{=} \PY{n}{PolygonPatch}\PY{p}{(}\PY{n}{dilated2}\PY{p}{,} \PY{n}{facecolor}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{\PYZsh{}6699cc}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{edgecolor}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{\PYZsh{}6699cc}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.5}\PY{p}{,} \PY{n}{zorder}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)}
+         
+         \PY{k}{if} \PY{n}{MAKEPLOT}\PY{p}{:}
+             \PY{n}{f}\PY{p}{,} \PY{n}{ax} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{15}\PY{p}{,} \PY{l+m+mi}{25}\PY{p}{)}\PY{p}{)}
+             \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}aspect}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{equal}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+             \PY{n}{ax}\PY{o}{.}\PY{n}{invert\PYZus{}yaxis}\PY{p}{(}\PY{p}{)}
+             \PY{k}{for} \PY{n}{p} \PY{o+ow}{in} \PY{n}{firepoints}\PY{p}{:}
+                 \PY{n}{ax}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{p}\PY{o}{.}\PY{n}{x}\PY{p}{,} \PY{n}{p}\PY{o}{.}\PY{n}{y}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{o}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{\PYZsh{}999999}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+             \PY{n}{ax}\PY{o}{.}\PY{n}{add\PYZus{}patch}\PY{p}{(}\PY{n}{patch2}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Hyperion_NB1_selection_and_classification_files/Hyperion_NB1_selection_and_classification_25_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Calculate the mask of fire candidate pixels from simple thresholding.
+Then plot the fire mask.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}14}]:} \PY{n}{firemask} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n}{b220}\PY{o}{.}\PY{n}{data}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+         \PY{n}{firemask}\PY{p}{[}\PY{n}{b220}\PY{o}{.}\PY{n}{radiance} \PY{o}{\PYZgt{}} \PY{l+m+mf}{5.}\PY{p}{]} \PY{o}{=} \PY{l+m+mf}{1.} 
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}16}]:} \PY{n}{saveout} \PY{o}{=} \PY{n+nb+bp}{False}
+         \PY{n}{f}\PY{p}{,} \PY{n}{ax} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{15}\PY{p}{,} \PY{l+m+mi}{25}\PY{p}{)}\PY{p}{)}
+         \PY{c}{\PYZsh{}output = ax.pcolor(np.flipud(firemask), cmap=\PYZsq{}bone\PYZsq{}, vmin=0, vmax=1)}
+         \PY{n}{output} \PY{o}{=} \PY{n}{ax}\PY{o}{.}\PY{n}{pcolor}\PY{p}{(}\PY{n}{firemask}\PY{p}{,} \PY{n}{cmap}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{bone}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{vmin}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{vmax}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+         \PY{n}{patch2} \PY{o}{=} \PY{n}{PolygonPatch}\PY{p}{(}\PY{n}{dilated2}\PY{p}{,} \PY{n}{facecolor}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{\PYZsh{}6699cc}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{edgecolor}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{\PYZsh{}6699cc}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.5}\PY{p}{,} \PY{n}{zorder}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{add\PYZus{}patch}\PY{p}{(}\PY{n}{patch2}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Band 220, Fire Candidates with \PYZdl{}L \PYZgt{} 5 W / m\PYZca{}2 }\PY{l+s}{\PYZbs{}}\PY{l+s}{mu m\PYZdl{}}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{y}\PY{o}{=}\PY{l+m+mf}{1.08}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}aspect}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{equal}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{invert\PYZus{}yaxis}\PY{p}{(}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{xaxis}\PY{o}{.}\PY{n}{set\PYZus{}ticks\PYZus{}position}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{top}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{c}{\PYZsh{}ax.set\PYZus{}axis\PYZus{}off()}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{tight\PYZus{}layout}\PY{p}{(}\PY{p}{)}
+         \PY{k}{if} \PY{n}{saveout}\PY{p}{:}
+             \PY{n}{outfile} \PY{o}{=} \PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{outdir}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{fire01\PYZus{}}\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{\PYZus{}plot.png}\PY{l+s}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{n}{fireyear}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{savefig}\PY{p}{(}\PY{n}{outfile}\PY{p}{,}  \PY{n}{bbox\PYZus{}inches}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{tight}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{dpi}\PY{o}{=}\PY{l+m+mi}{150}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{close}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Hyperion_NB1_selection_and_classification_files/Hyperion_NB1_selection_and_classification_28_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+
+    \subsubsection{Square buffers -- the pedestrian way}
+
+
+    Calculate a square buffer around each pixel in the firemask, N pixels in
+east/west and north/south direction. (E.g., N=10: 300m). Then plot the
+buffered mask.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}13}]:} \PY{n}{N} \PY{o}{=} \PY{l+m+mi}{10}
+         \PY{n}{firemask\PYZus{}ext} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n}{b220}\PY{o}{.}\PY{n}{data}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+         \PY{k}{for} \PY{n}{i}\PY{p}{,} \PY{n}{j} \PY{o+ow}{in} \PY{n+nb}{zip}\PY{p}{(}\PY{n}{i\PYZus{}fire}\PY{p}{,} \PY{n}{j\PYZus{}fire}\PY{p}{)}\PY{p}{:}
+             \PY{n}{firemask\PYZus{}ext}\PY{p}{[}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{n}{N}\PY{p}{:}\PY{n}{i}\PY{o}{+}\PY{n}{N}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{j}\PY{o}{\PYZhy{}}\PY{n}{N}\PY{p}{:}\PY{n}{j}\PY{o}{+}\PY{n}{N}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{l+m+mf}{0.5}
+         \PY{n}{firemask\PYZus{}ext}\PY{p}{[}\PY{n}{b220}\PY{o}{.}\PY{n}{radiance} \PY{o}{\PYZgt{}} \PY{l+m+mf}{5.}\PY{p}{]} \PY{o}{=} \PY{l+m+mf}{1.} 
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}15}]:} \PY{n}{saveout} \PY{o}{=} \PY{n+nb+bp}{False}
+         \PY{n}{f}\PY{p}{,} \PY{n}{ax} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{15}\PY{p}{,} \PY{l+m+mi}{25}\PY{p}{)}\PY{p}{)}
+         \PY{n}{output} \PY{o}{=} \PY{n}{ax}\PY{o}{.}\PY{n}{pcolor}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{flipud}\PY{p}{(}\PY{n}{firemask\PYZus{}ext}\PY{p}{)}\PY{p}{,} \PY{n}{cmap}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{bone}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{vmin}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{vmax}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Band 220, Fire Candidates and buffer of }\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{ m}\PY{l+s}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{n+nb}{str}\PY{p}{(}\PY{n}{N}\PY{o}{*}\PY{l+m+mi}{30}\PY{p}{)}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}aspect}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{equal}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{c}{\PYZsh{}ax.set\PYZus{}axis\PYZus{}off()}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{tight\PYZus{}layout}\PY{p}{(}\PY{p}{)}
+         \PY{k}{if} \PY{n}{saveout}\PY{p}{:}
+             \PY{n}{outfile} \PY{o}{=} \PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{outdir}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{fire01\PYZus{}buff\PYZus{}}\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{\PYZus{}plot.png}\PY{l+s}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{n}{fireyear}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{savefig}\PY{p}{(}\PY{n}{outfile}\PY{p}{,}  \PY{n}{bbox\PYZus{}inches}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{tight}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{dpi}\PY{o}{=}\PY{l+m+mi}{150}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{close}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Hyperion_NB1_selection_and_classification_files/Hyperion_NB1_selection_and_classification_32_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Let's save the masks to a TIF file. NOTE: This isn't such a great idea
+-- float64 TIFF files are hard to read by other applications.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}116}]:} \PY{n}{firemask\PYZus{}ds} \PY{o}{=} \PY{n}{b220}\PY{o}{.}\PY{n}{clone}\PY{p}{(}\PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{outdir}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{fire\PYZus{}01.tif}\PY{l+s}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{n}{firename}\PY{p}{)}\PY{p}{,} \PY{n}{firemask\PYZus{}ext}\PY{p}{)} 
+          \PY{n}{firemask\PYZus{}ext\PYZus{}ds} \PY{o}{=} \PY{n}{b220}\PY{o}{.}\PY{n}{clone}\PY{p}{(}\PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{outdir}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{fire\PYZus{}ext01.tif}\PY{l+s}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{n}{firename}\PY{p}{)}\PY{p}{,} \PY{n}{firemask\PYZus{}ext}\PY{p}{)} 
+\end{Verbatim}
+
+
+    \subsubsection{Circular buffers -- the more elegant way}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}17}]:} \PY{k+kn}{from} \PY{n+nn}{shapely.geometry} \PY{k+kn}{import} \PY{n}{Point}
+         \PY{k+kn}{from} \PY{n+nn}{shapely.ops} \PY{k+kn}{import} \PY{n}{cascaded\PYZus{}union}
+\end{Verbatim}
+
+    A new radius -- a little larger this time.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}18}]:} \PY{n}{deltaCirc} \PY{o}{=} \PY{l+m+mi}{20}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}19}]:} \PY{n}{firecircles} \PY{o}{=} \PY{p}{[}\PY{n}{Point}\PY{p}{(}\PY{n}{j}\PY{p}{,} \PY{n}{i}\PY{p}{)}\PY{o}{.}\PY{n}{buffer}\PY{p}{(}\PY{n}{deltaCirc}\PY{p}{)} \PY{k}{for} \PY{n}{j}\PY{p}{,} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{zip}\PY{p}{(}\PY{n}{j\PYZus{}fire}\PY{p}{,} \PY{n}{i\PYZus{}fire}\PY{p}{)}\PY{p}{]}
+         \PY{n}{circbuffer} \PY{o}{=} \PY{n}{cascaded\PYZus{}union}\PY{p}{(}\PY{n}{firecircles}\PY{p}{)}
+\end{Verbatim}
+
+    Plot this one.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}38}]:} \PY{n}{saveout} \PY{o}{=} \PY{n+nb+bp}{True}
+         
+         \PY{n}{firemask} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n}{b220}\PY{o}{.}\PY{n}{data}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+         \PY{n}{firemask}\PY{p}{[}\PY{n}{b220}\PY{o}{.}\PY{n}{radiance} \PY{o}{\PYZgt{}} \PY{l+m+mf}{5.}\PY{p}{]} \PY{o}{=} \PY{l+m+mf}{1.} 
+         
+         \PY{n}{f}\PY{p}{,} \PY{n}{ax} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{15}\PY{p}{,} \PY{l+m+mi}{25}\PY{p}{)}\PY{p}{)}
+         \PY{c}{\PYZsh{}output = ax.pcolor(np.flipud(firemask), cmap=\PYZsq{}bone\PYZsq{}, vmin=0, vmax=1)}
+         \PY{n}{output} \PY{o}{=} \PY{n}{ax}\PY{o}{.}\PY{n}{pcolor}\PY{p}{(}\PY{n}{firemask}\PY{p}{,} \PY{n}{cmap}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{bone}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{vmin}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{vmax}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Band 220, Fire Candidates with \PYZdl{}L \PYZgt{} 5 W / m\PYZca{}2 }\PY{l+s}{\PYZbs{}}\PY{l+s}{mu m\PYZdl{}}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{y}\PY{o}{=}\PY{l+m+mf}{1.08}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}aspect}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{equal}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{invert\PYZus{}yaxis}\PY{p}{(}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{xaxis}\PY{o}{.}\PY{n}{set\PYZus{}ticks\PYZus{}position}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{top}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{c}{\PYZsh{}ax.set\PYZus{}axis\PYZus{}off()}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{tight\PYZus{}layout}\PY{p}{(}\PY{p}{)}
+         \PY{k}{for} \PY{n}{polygon} \PY{o+ow}{in} \PY{n}{circbuffer}\PY{p}{:}
+             \PY{n}{patch} \PY{o}{=} \PY{n}{PolygonPatch}\PY{p}{(}\PY{n}{polygon}\PY{p}{,} \PY{n}{facecolor}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{\PYZsh{}6699cc}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{edgecolor}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{\PYZsh{}6699cc}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.5}\PY{p}{,} \PY{n}{zorder}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)}
+             \PY{n}{ax}\PY{o}{.}\PY{n}{add\PYZus{}patch}\PY{p}{(}\PY{n}{patch}\PY{p}{)}
+         \PY{k}{if} \PY{n}{saveout}\PY{p}{:}
+             \PY{n}{outfile} \PY{o}{=} \PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{outdir}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{fire\PYZus{}circ\PYZus{}}\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{\PYZus{}plot.png}\PY{l+s}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{n}{fireyear}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{savefig}\PY{p}{(}\PY{n}{outfile}\PY{p}{,}  \PY{n}{bbox\PYZus{}inches}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{tight}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{dpi}\PY{o}{=}\PY{l+m+mi}{150}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{close}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}27}]:} \PY{n}{circbuffer}\PY{o}{.}\PY{n}{geoms}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}27}]:} <shapely.geometry.base.GeometrySequence at 0x114ad1bd0>
+\end{Verbatim}
+        
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}36}]:} \PY{k}{for} \PY{n}{poly} \PY{o+ow}{in} \PY{n}{circbuffer}\PY{p}{:}
+             \PY{k}{print}\PY{p}{(}\PY{n}{poly}\PY{o}{.}\PY{n}{exterior}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+LINEARRING (111 64, 110.9036945334439 62.03965719340879, 110.6157056080646 60.09819355967744, 110.1388067146442 58.19430645491076, 109.4775906502257 56.34633135269821, 108.6384252869671 54.57206526348006, 107.6293922460509 52.88859533960797, 106.4602090672548 51.3121343167271, 105.142135623731 49.85786437626906, 103.6878656832729 48.53979093274528, 102.1114046603921 47.3706077539491, 100.42793473652 46.36157471303291, 98.65366864730181 45.52240934977428, 96.80569354508927 44.86119328535583, 94.90180644032259 44.3842943919354, 92.96034280659124 44.09630546655607, 91.00000000000003 44, 89.03965719340883 44.09630546655606, 87.09819355967747 44.38429439193538, 85.19430645491079 44.86119328535581, 83.34633135269824 45.52240934977425, 81.57206526348008 46.36157471303288, 79.88859533960799 47.37060775394907, 78.31213431672712 48.53979093274523, 76.85786437626908 49.85786437626902, 75.53979093274529 51.31213431672707, 74.37060775394912 52.88859533960793, 73.36157471303292 54.57206526348002, 72.52240934977428 56.34633135269818, 71.86119328535582 58.19430645491073, 71.3842943919354 60.09819355967741, 71.09630546655606 62.03965719340876, 71 63.99999999999998, 71.09630546655606 65.9603428065912, 71.38429439193538 67.90180644032255, 71.86119328535582 69.80569354508924, 72.52240934977426 71.65366864730179, 73.36157471303289 73.42793473651994, 74.37060775394909 75.11140466039204, 75.53979093274526 76.6878656832729, 76.85786437626905 78.14213562373095, 78.31213431672708 79.46020906725474, 79.88859533960795 80.6293922460509, 81.57206526348003 81.63842528696709, 83.34633135269817 82.47759065022572, 85.19430645491072 83.13880671464418, 87.0981935596774 83.6157056080646, 89.03965719340874 83.90369453344394, 90.99999999999994 84, 92.96034280659114 83.90369453344394, 94.9018064403225 83.61570560806462, 96.80569354508917 83.1388067146442, 98.65366864730171 82.47759065022576, 100.4279347365199 81.63842528696713, 102.111404660392 80.62939224605097, 103.6878656832728 79.46020906725481, 105.1421356237309 78.14213562373104, 106.4602090672547 76.687865683273, 107.6293922460508 75.11140466039215, 108.638425286967 73.42793473652007, 109.4775906502257 71.65366864730193, 110.1388067146441 69.80569354508938, 110.6157056080646 67.90180644032272, 110.9036945334439 65.96034280659137, 111 64.00000000000017, 111 64)
+LINEARRING (156.5 68.02456342488473, 156 68, 154.0396571934088 68.09630546655606, 152.0981935596775 68.38429439193538, 150.1943064549108 68.86119328535581, 148.3463313526983 69.52240934977425, 146.5720652634801 70.36157471303288, 144.888595339608 71.37060775394907, 143.3121343167271 72.53979093274523, 141.8578643762691 73.85786437626902, 140.5397909327453 75.31213431672707, 139.3706077539491 76.88859533960793, 138.3615747130329 78.57206526348003, 137.5224093497743 80.34633135269817, 136.8611932853558 82.19430645491073, 136.3842943919354 84.09819355967741, 136.0963054665561 86.03965719340877, 136 87.99999999999999, 136.0963054665561 89.9603428065912, 136.3842943919354 91.90180644032255, 136.8611932853558 93.80569354508924, 137.5224093497743 95.65366864730179, 138.3615747130329 97.42793473651994, 139.3706077539491 99.11140466039204, 140.5397909327453 100.6878656832729, 141.857864376269 102.142135623731, 143.3121343167271 103.4602090672547, 144.8885953396079 104.6293922460509, 146.57206526348 105.6384252869671, 148.3463313526982 106.4775906502257, 150.1943064549107 107.1388067146442, 152.0981935596774 107.6157056080646, 154.0396571934087 107.9036945334439, 155.9999999999999 108, 156.4999999999999 107.9754365751153, 156.9999999999999 108, 158.9603428065911 107.9036945334439, 160.9018064403225 107.6157056080646, 162.8056935450892 107.1388067146442, 164.6536686473017 106.4775906502258, 166.4279347365199 105.6384252869671, 168.111404660392 104.629392246051, 169.6878656832728 103.4602090672548, 171.1421356237309 102.142135623731, 172.4602090672547 100.687865683273, 173.6293922460508 99.11140466039215, 174.638425286967 97.42793473652007, 175.4775906502257 95.65366864730193, 176.1388067146441 93.80569354508938, 176.6157056080646 91.90180644032272, 176.9036945334439 89.96034280659137, 177 88.00000000000017, 177 88, 176.9036945334439 86.03965719340879, 176.6157056080646 84.09819355967744, 176.1388067146442 82.19430645491076, 175.4775906502257 80.34633135269821, 174.6384252869671 78.57206526348006, 173.6293922460509 76.88859533960796, 172.4602090672547 75.3121343167271, 171.142135623731 73.85786437626906, 169.6878656832729 72.53979093274528, 168.1114046603921 71.3706077539491, 166.42793473652 70.36157471303291, 164.6536686473018 69.52240934977428, 162.8056935450893 68.86119328535582, 160.9018064403226 68.3842943919354, 158.9603428065912 68.09630546655606, 157 68, 156.5 68.02456342488473)
+LINEARRING (164.5 17.02456342488474, 164 17, 162.0396571934088 17.09630546655606, 160.0981935596775 17.38429439193538, 158.1943064549108 17.86119328535581, 156.3463313526983 18.52240934977425, 154.5720652634801 19.36157471303288, 152.888595339608 20.37060775394907, 151.3121343167271 21.53979093274523, 149.8578643762691 22.85786437626902, 148.5397909327453 24.31213431672706, 147.3706077539491 25.88859533960793, 146.3615747130329 27.57206526348002, 145.5224093497743 29.34633135269818, 144.8611932853558 31.19430645491073, 144.3842943919354 33.09819355967741, 144.0963054665561 35.03965719340876, 144 36.99999999999998, 144.0245634248847 37.49999999999998, 144 37.99999999999998, 144.0963054665561 39.96034280659119, 144.3842943919354 41.90180644032255, 144.8611932853558 43.80569354508923, 145.5224093497743 45.65366864730179, 146.3615747130329 47.42793473651994, 147.3706077539491 49.11140466039204, 148.5397909327453 50.6878656832729, 149.857864376269 52.14213562373095, 151.3121343167271 53.46020906725474, 152.8885953396079 54.6293922460509, 154.57206526348 55.63842528696709, 156.3463313526982 56.47759065022572, 158.1943064549107 57.13880671464417, 160.0981935596774 57.6157056080646, 162.0396571934087 57.90369453344393, 163.9999999999999 58, 164.5 57.97543657511527, 164.9999999999999 58, 166.9603428065911 57.90369453344394, 168.9018064403225 57.61570560806462, 170.8056935450892 57.1388067146442, 171.81859467619 56.77638489481036, 172.9018064403225 56.61570560806462, 174.8056935450892 56.1388067146442, 176.6536686473017 55.47759065022576, 178.4279347365199 54.63842528696714, 180.111404660392 53.62939224605096, 181.6878656832728 52.46020906725481, 183.1421356237309 51.14213562373103, 184.4602090672547 49.687865683273, 185.6293922460508 48.11140466039215, 186.638425286967 46.42793473652007, 187.4775906502257 44.65366864730192, 188.1388067146441 42.80569354508938, 188.6157056080646 40.90180644032272, 188.9036945334439 38.96034280659137, 189 37.00000000000016, 189 37, 188.9036945334439 35.03965719340879, 188.6157056080646 33.09819355967744, 188.1388067146442 31.19430645491076, 187.4775906502257 29.34633135269821, 186.6384252869671 27.57206526348006, 185.6293922460509 25.88859533960797, 184.4602090672547 24.3121343167271, 183.142135623731 22.85786437626906, 181.6878656832729 21.53979093274527, 180.1114046603921 20.37060775394911, 178.42793473652 19.36157471303291, 176.6536686473018 18.52240934977428, 174.8056935450893 17.86119328535583, 172.9018064403226 17.38429439193539, 170.9603428065912 17.09630546655607, 169 17, 167.0396571934088 17.09630546655606, 167 17.10218805550336, 166.9603428065912 17.09630546655607, 165 17, 164.5 17.02456342488474)
+LINEARRING (216.5 96.02456342488473, 216 96, 214.0396571934088 96.09630546655606, 212.0981935596775 96.38429439193538, 210.1943064549108 96.86119328535581, 208.3463313526983 97.52240934977425, 206.5720652634801 98.36157471303288, 204.888595339608 99.37060775394907, 203.3121343167271 100.5397909327452, 201.8578643762691 101.857864376269, 200.5397909327453 103.3121343167271, 199.3706077539491 104.8885953396079, 198.3615747130329 106.57206526348, 197.5224093497743 108.3463313526982, 196.8611932853558 110.1943064549107, 196.3842943919354 112.0981935596774, 196.0963054665561 114.0396571934088, 196 116, 196.0245634248847 116.5, 196 117, 196.0245634248847 117.5, 196 118, 196.0963054665561 119.9603428065912, 196.3842943919354 121.9018064403225, 196.8611932853558 123.8056935450892, 197.5224093497743 125.6536686473018, 198.3615747130329 127.4279347365199, 199.3706077539491 129.1114046603921, 200.5397909327453 130.6878656832729, 201.857864376269 132.142135623731, 203.3121343167271 133.4602090672547, 204.8885953396079 134.6293922460509, 206.57206526348 135.6384252869671, 207.6768267728056 136.1609385666386, 207.5397909327453 136.3121343167271, 206.3706077539491 137.8885953396079, 205.3615747130329 139.57206526348, 204.6787474917841 141.0157821237092, 204.5 141.0245634248847, 204 141, 202.0396571934088 141.0963054665561, 200.9249243359727 141.2616604658053, 199.8056935450893 140.8611932853558, 197.9018064403226 140.3842943919354, 195.9603428065912 140.0963054665561, 194 140, 192.0396571934088 140.0963054665561, 190.0981935596775 140.3842943919354, 188.9629079306217 140.6686686381064, 188.6536686473018 140.5224093497743, 186.8056935450893 139.8611932853558, 184.9018064403226 139.3842943919354, 182.9603428065912 139.0963054665561, 181 139, 179.0396571934088 139.0963054665561, 177.0981935596775 139.3842943919354, 175.1943064549108 139.8611932853558, 173.3463313526983 140.5224093497743, 171.5720652634801 141.3615747130329, 169.888595339608 142.3706077539491, 168.3121343167271 143.5397909327452, 166.8578643762691 144.857864376269, 166.3824278011538 145.3824278011538, 165.8578643762691 145.857864376269, 164.5397909327453 147.3121343167271, 163.3706077539491 148.8885953396079, 162.3615747130329 150.57206526348, 161.5224093497743 152.3463313526982, 160.8611932853558 154.1943064549107, 160.3842943919354 156.0981935596774, 160.0963054665561 158.0396571934088, 160 160, 160.0963054665561 161.9603428065912, 160.1903517137565 162.5943511060008, 160.1453920579647 162.6439564419345, 159.6384252869671 161.5720652634801, 158.6293922460509 159.888595339608, 157.4602090672547 158.3121343167271, 156.142135623731 156.857864376269, 154.6878656832729 155.5397909327453, 153.1114046603921 154.3706077539491, 151.42793473652 153.3615747130329, 149.6536686473018 152.5224093497743, 147.8056935450893 151.8611932853558, 145.9018064403226 151.3842943919354, 143.9603428065912 151.0963054665561, 142 151, 141.5 151.0245634248847, 141 151, 139.0396571934088 151.0963054665561, 137.0981935596775 151.3842943919354, 135.1943064549108 151.8611932853558, 133.3463313526983 152.5224093497743, 131.5720652634801 153.3615747130329, 129.888595339608 154.3706077539491, 128.3121343167271 155.5397909327452, 126.8578643762691 156.857864376269, 125.5397909327453 158.3121343167271, 124.3706077539491 159.8885953396079, 123.3615747130329 161.57206526348, 122.5224093497743 163.3463313526982, 121.8611932853558 165.1943064549107, 121.3842943919354 167.0981935596774, 121.0963054665561 169.0396571934088, 121 171, 121.0245634248847 171.5, 121 172, 121.0021022715512 172.0427927205001, 120.4602090672548 171.3121343167271, 119.142135623731 169.857864376269, 117.6878656832729 168.5397909327453, 116.1114046603921 167.3706077539491, 114.42793473652 166.3615747130329, 112.6536686473018 165.5224093497743, 110.8056935450893 164.8611932853558, 108.9018064403226 164.3842943919354, 106.9603428065912 164.0963054665561, 105 164, 103.0396571934088 164.0963054665561, 101.0981935596775 164.3842943919354, 100.60966472514 164.5066644946645, 98.80569354508927 163.8611932853558, 96.90180644032259 163.3842943919354, 94.96034280659124 163.0963054665561, 93.00000000000003 163, 91.03965719340883 163.0963054665561, 89.09819355967747 163.3842943919354, 87.19430645491079 163.8611932853558, 85.34633135269824 164.5224093497743, 83.57206526348008 165.3615747130329, 81.88859533960799 166.3706077539491, 80.97185384863538 167.0505095815192, 80.03965719340883 167.0963054665561, 78.09819355967747 167.3842943919354, 76.19430645491079 167.8611932853558, 74.34633135269824 168.5224093497743, 72.57206526348008 169.3615747130329, 70.88859533960799 170.3706077539491, 69.31213431672712 171.5397909327452, 67.85786437626908 172.857864376269, 66.53979093274529 174.3121343167271, 65.95828494905065 175.0962043704978, 64.00000000000003 175, 62.03965719340882 175.0963054665561, 60.09819355967747 175.3842943919354, 58.19430645491079 175.8611932853558, 56.34633135269824 176.5224093497743, 56.00000000000001 176.6862118803873, 55.65366864730181 176.5224093497743, 53.80569354508927 175.8611932853558, 51.90180644032259 175.3842943919354, 49.96034280659124 175.0963054665561, 48.00000000000004 175, 46.50000000000004 175.0736902746542, 45.00000000000004 175, 43.03965719340882 175.0963054665561, 41.09819355967747 175.3842943919354, 39.19430645491079 175.8611932853558, 37.34633135269824 176.5224093497743, 35.57206526348008 177.3615747130329, 33.88859533960799 178.3706077539491, 32.31213431672712 179.5397909327452, 30.85786437626908 180.857864376269, 29.53979093274528 182.3121343167271, 28.37060775394911 183.8885953396079, 27.36157471303292 185.57206526348, 26.52240934977428 187.3463313526982, 25.86119328535583 189.1943064549107, 25.38429439193539 191.0981935596774, 25.09630546655606 193.0396571934088, 25 195, 25.09630546655606 196.9603428065912, 25.38429439193539 198.9018064403226, 25.86119328535582 200.8056935450892, 26.52240934977426 202.6536686473018, 27.36157471303289 204.4279347365199, 28.37060775394909 206.1114046603921, 29.53979093274526 207.6878656832729, 30.85786437626905 209.142135623731, 32.31213431672708 210.4602090672547, 33.88859533960794 211.6293922460509, 35.08008176927389 212.3435417287877, 36.31213431672708 213.4602090672547, 37.88859533960794 214.6293922460509, 39.57206526348003 215.6384252869671, 41.34633135269818 216.4775906502257, 43.19430645491072 217.1388067146442, 45.09819355967739 217.6157056080646, 47.03965719340874 217.9036945334439, 48.99999999999994 218, 49.49999999999994 217.9754365751153, 49.99999999999994 218, 51.96034280659115 217.9036945334439, 53.9018064403225 217.6157056080646, 55.80569354508917 217.1388067146442, 56.27499701835317 216.9708872468776, 57.34633135269818 217.4775906502257, 59.19430645491072 218.1388067146442, 61.09819355967739 218.6157056080646, 63.03965719340874 218.9036945334439, 64.99999999999994 219, 65.91463982851339 218.9550666265515, 66.52240934977426 220.6536686473018, 67.36157471303289 222.4279347365199, 68.37060775394909 224.1114046603921, 69.53979093274526 225.6878656832729, 70.85786437626905 227.142135623731, 71.38242780115378 227.6175721988462, 71.85786437626905 228.142135623731, 72.38242780115378 228.6175721988462, 72.85786437626905 229.142135623731, 74.31213431672708 230.4602090672547, 74.57254432246162 230.6533422902625, 74.86119328535582 231.8056935450892, 75.52240934977426 233.6536686473018, 76.36157471303289 235.4279347365199, 77.37060775394909 237.1114046603921, 78.53979093274526 238.6878656832729, 79.85786437626905 240.142135623731, 81.31213431672708 241.4602090672547, 82.88859533960795 242.6293922460509, 84.57206526348003 243.6384252869671, 86.34633135269817 244.4775906502257, 88.19430645491072 245.1388067146442, 90.0981935596774 245.6157056080646, 92.03965719340874 245.9036945334439, 93.99999999999994 246, 94.49999999999994 245.9754365751153, 94.99999999999994 246, 96.96034280659114 245.9036945334439, 98.9018064403225 245.6157056080646, 100.8056935450892 245.1388067146442, 102.6536686473017 244.4775906502258, 104.4279347365199 243.6384252869671, 106.111404660392 242.629392246051, 107.6878656832728 241.4602090672548, 109.1421356237309 240.142135623731, 110.4602090672547 238.687865683273, 111.6293922460508 237.1114046603921, 112.638425286967 235.4279347365201, 113.4775906502257 233.6536686473019, 114.1388067146441 231.8056935450894, 114.6157056080646 229.9018064403227, 114.9036945334439 227.9603428065914, 115 226.0000000000002, 115 226, 114.9036945334439 224.0396571934088, 114.6157056080646 222.0981935596774, 114.1388067146442 220.1943064549108, 113.8432023899715 219.3681477127122, 113.9036945334439 218.9603428065914, 113.9381745562536 218.2584858185803, 114.57206526348 218.6384252869671, 116.3463313526982 219.4775906502257, 116.5464572450835 219.5491968395044, 116.8611932853558 220.8056935450892, 117.5224093497743 222.6536686473018, 118.3615747130329 224.4279347365199, 119.3706077539491 226.1114046603921, 120.5397909327453 227.6878656832729, 121.857864376269 229.142135623731, 123.3121343167271 230.4602090672547, 124.8885953396079 231.6293922460509, 126.57206526348 232.6384252869671, 128.3463313526982 233.4775906502257, 130.1943064549107 234.1388067146442, 132.0981935596774 234.6157056080646, 134.0396571934087 234.9036945334439, 135.9999999999999 235, 137.9603428065911 234.9036945334439, 139.9018064403225 234.6157056080646, 141.8056935450892 234.1388067146442, 143.6536686473017 233.4775906502258, 144.0310504638595 233.299102343932, 144.3824278011538 233.6175721988462, 144.857864376269 234.142135623731, 146.3121343167271 235.4602090672547, 147.8885953396079 236.6293922460509, 149.57206526348 237.6384252869671, 151.3463313526982 238.4775906502257, 153.1943064549107 239.1388067146442, 155.0981935596774 239.6157056080646, 157.0396571934087 239.9036945334439, 158.9999999999999 240, 160.9603428065911 239.9036945334439, 162.9018064403225 239.6157056080646, 164.8056935450892 239.1388067146442, 166.6536686473017 238.4775906502258, 168.4279347365199 237.6384252869671, 170.111404660392 236.629392246051, 171.6878656832728 235.4602090672548, 171.9010513124454 235.2669888757787, 172.3463313526982 235.4775906502257, 174.1943064549107 236.1388067146442, 176.0981935596774 236.6157056080646, 178.0396571934087 236.9036945334439, 179.9999999999999 237, 180.4999999999999 236.9754365751153, 180.9999999999999 237, 182.9603428065911 236.9036945334439, 184.9018064403225 236.6157056080646, 186.8056935450892 236.1388067146442, 188.6536686473017 235.4775906502258, 190.4279347365199 234.6384252869671, 190.8556661285188 234.3820529567913, 192.4279347365199 233.6384252869671, 194.111404660392 232.629392246051, 195.6878656832728 231.4602090672548, 197.1421356237309 230.142135623731, 198.4602090672547 228.687865683273, 199.6293922460508 227.1114046603921, 200.638425286967 225.4279347365201, 201.4775906502257 223.6536686473019, 202.1388067146441 221.8056935450894, 202.1512168357503 221.7561495644498, 202.6293922460508 221.1114046603921, 203.638425286967 219.4279347365201, 204.3820529567913 217.8556661285188, 204.638425286967 217.4279347365201, 205.4775906502257 215.6536686473019, 206.1388067146441 213.8056935450894, 206.6157056080646 211.9018064403227, 206.9036945334439 209.9603428065914, 207 208.0000000000002, 207 208, 206.9754365751153 207.5, 207 207.0000000000002, 207 207, 206.9754365751153 206.5, 207 206.0000000000002, 207 206, 206.9036945334439 204.0396571934088, 206.6157056080646 202.0981935596774, 206.1388067146442 200.1943064549108, 206.0692827533888 200, 206.1388067146441 199.8056935450894, 206.6157056080646 197.9018064403227, 206.9036945334439 195.9603428065914, 206.9555928706977 194.903927882831, 206.9603428065911 194.9036945334439, 208.9018064403225 194.6157056080646, 210.8056935450892 194.1388067146442, 212.6536686473017 193.4775906502258, 214.4279347365199 192.6384252869671, 216.111404660392 191.629392246051, 217.6878656832728 190.4602090672548, 219.1421356237309 189.142135623731, 220.4602090672547 187.687865683273, 220.5571525407854 187.5571525407855, 220.6878656832728 187.4602090672548, 222.1421356237309 186.142135623731, 223.4602090672547 184.687865683273, 224.6293922460508 183.1114046603921, 225.638425286967 181.4279347365201, 226.4775906502257 179.6536686473019, 226.9988200777454 178.1969299858719, 227.3564466865863 177.8023498282179, 228.0396571934087 177.9036945334439, 229.9999999999999 178, 231.9603428065911 177.9036945334439, 233.9018064403225 177.6157056080646, 235.8056935450892 177.1388067146442, 237.6536686473017 176.4775906502258, 239.4279347365199 175.6384252869671, 241.111404660392 174.629392246051, 242.6878656832728 173.4602090672548, 244.1421356237309 172.142135623731, 245.4602090672547 170.687865683273, 246.6293922460508 169.1114046603921, 247.638425286967 167.4279347365201, 248.4635423640778 165.6833712527897, 249.6293922460508 164.1114046603921, 250.638425286967 162.4279347365201, 251.4775906502257 160.6536686473019, 252.1388067146441 158.8056935450894, 252.6157056080646 156.9018064403227, 252.7512883880579 155.9877815820042, 252.9999999999999 156, 254.9603428065911 155.9036945334439, 256.9018064403225 155.6157056080646, 258.8056935450892 155.1388067146442, 260.6536686473017 154.4775906502258, 262.4279347365199 153.6384252869671, 264.1114046603919 152.629392246051, 265.6878656832728 151.4602090672548, 267.1421356237309 150.142135623731, 268.4602090672547 148.687865683273, 269.6293922460508 147.1114046603921, 270.638425286967 145.4279347365201, 271.4775906502257 143.6536686473019, 272.1388067146441 141.8056935450894, 272.6157056080646 139.9018064403227, 272.9036945334439 137.9603428065914, 273 136.0000000000002, 273 136, 272.9754365751153 135.4999999999999, 273 135.0000000000002, 273 135, 272.903694533444 133.0396571934088, 272.6157056080646 131.0981935596774, 272.1388067146442 129.1943064549108, 271.4775906502257 127.3463313526982, 270.6384252869671 125.5720652634801, 269.6293922460509 123.888595339608, 268.4602090672548 122.3121343167271, 267.142135623731 120.8578643762691, 265.6878656832729 119.5397909327453, 264.1114046603921 118.3706077539491, 262.42793473652 117.3615747130329, 260.6536686473018 116.5224093497743, 258.8056935450893 115.8611932853558, 256.9018064403226 115.3842943919354, 254.9603428065912 115.0963054665561, 253 115, 252.5 115.0245634248847, 252 115, 250.0396571934088 115.0963054665561, 248.0981935596775 115.3842943919354, 246.1943064549108 115.8611932853558, 244.3463313526983 116.5224093497743, 242.5720652634801 117.3615747130329, 240.888595339608 118.3706077539491, 239.3121343167271 119.5397909327452, 237.8578643762691 120.857864376269, 236.5397909327453 122.3121343167271, 236.4992219548341 122.3668352511701, 236.6157056080646 121.9018064403227, 236.9036945334439 119.9603428065914, 237 118.0000000000002, 237 118, 236.9754365751153 117.5, 237 117.0000000000002, 237 117, 236.9754365751153 116.5, 237 116.0000000000002, 237 116, 236.9036945334439 114.0396571934088, 236.6157056080646 112.0981935596774, 236.1388067146442 110.1943064549108, 235.4775906502257 108.3463313526982, 234.6384252869671 106.5720652634801, 233.6293922460509 104.888595339608, 232.4602090672547 103.3121343167271, 231.142135623731 101.8578643762691, 229.6878656832729 100.5397909327453, 228.1114046603921 99.3706077539491, 226.42793473652 98.36157471303291, 224.6536686473018 97.52240934977428, 222.8056935450893 96.86119328535582, 220.9018064403226 96.3842943919354, 218.9603428065912 96.09630546655606, 217 96, 216.5 96.02456342488473)
+LINEARRING (305 202, 304.903694533444 200.0396571934088, 304.6157056080646 198.0981935596774, 304.1388067146442 196.1943064549108, 303.4775906502257 194.3463313526982, 302.6384252869671 192.5720652634801, 301.6293922460509 190.888595339608, 300.4602090672548 189.3121343167271, 299.142135623731 187.857864376269, 297.6878656832729 186.5397909327453, 296.1114046603921 185.3706077539491, 294.42793473652 184.3615747130329, 292.6536686473018 183.5224093497743, 290.8056935450893 182.8611932853558, 288.9018064403226 182.3842943919354, 286.9603428065913 182.0963054665561, 285.0000000000001 182, 283.0396571934088 182.0963054665561, 281.0981935596775 182.3842943919354, 279.1943064549108 182.8611932853558, 277.3463313526983 183.5224093497743, 275.5720652634801 184.3615747130329, 273.888595339608 185.3706077539491, 272.3121343167271 186.5397909327452, 270.857864376269 187.857864376269, 269.5397909327453 189.3121343167271, 268.3706077539491 190.8885953396079, 267.3615747130329 192.57206526348, 266.5224093497743 194.3463313526982, 265.8611932853559 196.1943064549107, 265.3842943919354 198.0981935596774, 265.0963054665561 200.0396571934088, 265 202, 265.096305466556 203.9603428065912, 265.3842943919354 205.9018064403226, 265.8611932853558 207.8056935450892, 266.5224093497743 209.6536686473018, 267.3615747130329 211.4279347365199, 268.3706077539491 213.1114046603921, 269.5397909327452 214.6878656832729, 270.857864376269 216.142135623731, 272.3121343167271 217.4602090672547, 273.8885953396079 218.6293922460509, 275.57206526348 219.6384252869671, 277.3463313526982 220.4775906502257, 279.1943064549107 221.1388067146442, 281.0981935596774 221.6157056080646, 283.0396571934087 221.9036945334439, 284.9999999999999 222, 286.9603428065911 221.9036945334439, 288.9018064403225 221.6157056080646, 290.8056935450892 221.1388067146442, 292.6536686473017 220.4775906502258, 294.4279347365199 219.6384252869671, 296.1114046603919 218.629392246051, 297.6878656832728 217.4602090672548, 299.1421356237309 216.142135623731, 300.4602090672547 214.687865683273, 301.6293922460508 213.1114046603921, 302.638425286967 211.4279347365201, 303.4775906502257 209.6536686473019, 304.1388067146441 207.8056935450894, 304.6157056080646 205.9018064403227, 304.9036945334439 203.9603428065914, 305 202.0000000000002, 305 202)
+    \end{Verbatim}
+
+
+    \subsection{Calculate spectra}
+
+
+
+    \subsubsection{Preparation}
+
+
+    How long does it take to calculate 1 spectrum? This is mostly an I/O
+problem as the individual bands still reside in different data files.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}37}]:} \PY{o}{\PYZpc{}\PYZpc{}}\PY{k}{timeit}
+         \PY{n}{spec1} \PY{o}{=} \PY{n}{hypsc}\PY{o}{.}\PY{n}{spectrum}\PY{p}{(}\PY{n}{i\PYZus{}fire}\PY{p}{[}\PY{l+m+mi}{45}\PY{p}{]}\PY{p}{,} \PY{n}{j\PYZus{}fire}\PY{p}{[}\PY{l+m+mi}{45}\PY{p}{]}\PY{p}{,} \PY{n}{bands}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{selected}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{bdsel}\PY{o}{=}\PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{127}\PY{p}{,} \PY{l+m+mi}{224}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+1 loops, best of 3: 345 ms per loop
+    \end{Verbatim}
+
+
+    \subsubsection{Fire pixels (candidates)}
+
+
+    Calculate default spectra for fire pixels. Default means only calibrated
+bands. How many did we get?
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}117}]:} \PY{k}{with} \PY{n+nb}{open}\PY{p}{(}\PY{n}{infn}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{rU}\PY{l+s}{\PYZdq{}}\PY{p}{)} \PY{k}{as} \PY{n}{source}\PY{p}{:}
+              \PY{n}{specs} \PY{o}{=} \PY{n}{pickle}\PY{o}{.}\PY{n}{load}\PY{p}{(}\PY{n}{source}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}11}]:} \PY{n}{loadfromfile} \PY{o}{=} \PY{n+nb+bp}{True}
+         \PY{n}{calculate} \PY{o}{=} \PY{n+nb+bp}{False}
+         \PY{k}{if} \PY{n}{loadfromfile}\PY{p}{:}
+             \PY{k}{try}\PY{p}{:}
+                 \PY{n}{infn} \PY{o}{=} \PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{outdir}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{\PYZus{}firespecs.dat}\PY{l+s}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{n}{firename}\PY{p}{)}
+                 \PY{k}{with} \PY{n+nb}{open}\PY{p}{(}\PY{n}{infn}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{rU}\PY{l+s}{\PYZdq{}}\PY{p}{)} \PY{k}{as} \PY{n}{source}\PY{p}{:}
+                     \PY{n}{specs} \PY{o}{=} \PY{n}{pickle}\PY{o}{.}\PY{n}{load}\PY{p}{(}\PY{n}{source}\PY{p}{)}
+             \PY{k}{except} \PY{n+ne}{IOError}\PY{p}{:}
+                 \PY{n}{calculate} \PY{o}{=} \PY{n+nb+bp}{True}
+         \PY{k}{if} \PY{p}{(}\PY{n}{calculate} \PY{o+ow}{or} \PY{o+ow}{not} \PY{n}{loadfromfile}\PY{p}{)}\PY{p}{:}
+             \PY{n}{specs} \PY{o}{=} \PY{p}{[}\PY{n}{hypsc}\PY{o}{.}\PY{n}{spectrum}\PY{p}{(}\PY{n}{i}\PY{p}{,} \PY{n}{j}\PY{p}{)} \PY{k}{for} \PY{n}{i}\PY{p}{,} \PY{n}{j} \PY{o+ow}{in} \PY{n+nb}{zip}\PY{p}{(}\PY{n}{i\PYZus{}fire}\PY{p}{,} \PY{n}{j\PYZus{}fire}\PY{p}{)}\PY{p}{]}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}21}]:} \PY{k}{print}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{specs}\PY{p}{)}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{i\PYZus{}fire}\PY{p}{)}\PY{p}{)}
+         \PY{k}{print}\PY{p}{(}\PY{n+nb}{type}\PY{p}{(}\PY{n}{specs}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{specs}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+         \PY{k}{print}\PY{p}{(}\PY{n+nb}{type}\PY{p}{(}\PY{n}{specs}\PY{p}{)}\PY{p}{,} \PY{n+nb}{type}\PY{p}{(}\PY{n}{specs}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+(180, 180)
+(<type 'numpy.float32'>, 198)
+(<type 'list'>, <type 'list'>)
+    \end{Verbatim}
+
+    Alternative: save spectra to HDF5 file.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}22}]:} \PY{n}{outfn} \PY{o}{=} \PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{outdir}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{\PYZus{}firespecs\PYZus{}calib.hdf5}\PY{l+s}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{n}{firename}\PY{p}{)}
+         \PY{n}{rh}\PY{o}{.}\PY{n}{save\PYZus{}hypspec\PYZus{}to\PYZus{}hdf5}\PY{p}{(}\PY{n}{outfn}\PY{p}{,} \PY{n}{hypsc}\PY{p}{,} \PY{n}{specs}\PY{p}{,} \PY{n}{i\PYZus{}fire}\PY{p}{,} \PY{n}{j\PYZus{}fire}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}32}]:} \PY{n}{np}\PY{o}{.}\PY{n}{where}\PY{p}{(}\PY{n}{hypsc}\PY{o}{.}\PY{n}{band\PYZus{}is\PYZus{}calibrated}\PY{p}{)}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}32}]:} (array([  7,   8,   9,  10,  11,  12,  13,  14,  15,  16,  17,  18,  19,
+                 20,  21,  22,  23,  24,  25,  26,  27,  28,  29,  30,  31,  32,
+                 33,  34,  35,  36,  37,  38,  39,  40,  41,  42,  43,  44,  45,
+                 46,  47,  48,  50,  52,  54,  56,  58,  60,  61,  62,  63,  64,
+                 65,  67,  69,  71,  73,  75,  77,  79,  81,  83,  85,  87,  89,
+                 91,  92,  93,  94,  95,  96,  97,  98,  99, 100, 101, 102, 103,
+                104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116,
+                117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129,
+                130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142,
+                143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155,
+                156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168,
+                169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181,
+                182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194,
+                195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207,
+                208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220,
+                221, 222, 223]),)
+\end{Verbatim}
+        
+    Pickle results.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}51}]:} \PY{k+kn}{import} \PY{n+nn}{pickle}
+         \PY{n}{out} \PY{o}{=} \PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{outdir}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{\PYZus{}firespecs.dat}\PY{l+s}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{n}{firename}\PY{p}{)}
+         \PY{k}{with} \PY{n+nb}{open}\PY{p}{(}\PY{n}{out}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{w}\PY{l+s}{\PYZdq{}}\PY{p}{)} \PY{k}{as} \PY{n}{sink}\PY{p}{:}
+             \PY{n}{pickle}\PY{o}{.}\PY{n}{dump}\PY{p}{(}\PY{n}{specs}\PY{p}{,} \PY{n}{sink}\PY{p}{)}
+\end{Verbatim}
+
+    As it turns out, the high uncalibrated spectra don't contain any usable
+data at all. We'll neglect them from now on.
+
+
+    \subsubsection{Buffer pixels}
+
+
+    Pull sample from buffer pixels (that is, not fire pixels, within buffer
+from fire pixels) if there is no saved data file. These represent
+``background'' candidates.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}15}]:} \PY{n}{N}\PY{o}{=}\PY{l+m+mi}{100}
+         \PY{n}{loadfromfile} \PY{o}{=} \PY{n+nb+bp}{True}
+         \PY{k}{if} \PY{n}{loadfromfile}\PY{p}{:}
+             \PY{n}{fn} \PY{o}{=} \PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{outdir}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{\PYZus{}buffersample.txt}\PY{l+s}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{n}{firename}\PY{p}{)}
+             \PY{k}{with} \PY{n+nb}{open}\PY{p}{(}\PY{n}{fn}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{rU}\PY{l+s}{\PYZdq{}}\PY{p}{)} \PY{k}{as} \PY{n}{source}\PY{p}{:}
+                 \PY{k}{for} \PY{n}{line} \PY{o+ow}{in} \PY{n}{source}\PY{p}{:}
+                     \PY{k}{if} \PY{n}{line}\PY{o}{.}\PY{n}{startswith}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{\PYZsh{}}\PY{l+s}{\PYZsq{}}\PY{p}{)}\PY{p}{:}
+                         \PY{k}{continue}
+                     \PY{n}{buffersample} \PY{o}{=} \PY{n}{json}\PY{o}{.}\PY{n}{loads}\PY{p}{(}\PY{n}{line}\PY{p}{)}
+         \PY{k}{else}\PY{p}{:}
+             \PY{n}{i\PYZus{}buffer}\PY{p}{,} \PY{n}{j\PYZus{}buffer} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{where}\PY{p}{(}\PY{n}{firemask\PYZus{}ext} \PY{o}{==} \PY{l+m+mf}{0.5}\PY{p}{)}
+             \PY{n}{buffersample} \PY{o}{=} \PY{n}{random}\PY{o}{.}\PY{n}{sample}\PY{p}{(}\PY{n+nb}{zip}\PY{p}{(}\PY{n}{i\PYZus{}buffer}\PY{p}{,} \PY{n}{j\PYZus{}buffer}\PY{p}{)}\PY{p}{,} \PY{n}{N}\PY{p}{)}
+         \PY{k}{print}\PY{p}{(}\PY{n}{buffersample}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[[226, 445], [130, 538], [377, 418], [281, 285], [330, 196], [135, 433], [40, 467], [319, 415], [368, 349], [597, 383], [156, 471], [243, 265], [321, 217], [316, 417], [303, 436], [329, 217], [499, 177], [120, 445], [516, 170], [182, 417], [376, 359], [47, 477], [597, 388], [302, 439], [277, 289], [347, 282], [278, 299], [430, 334], [244, 273], [97, 525], [184, 475], [320, 446], [188, 476], [98, 438], [327, 427], [135, 398], [58, 352], [333, 205], [72, 434], [384, 348], [326, 450], [171, 401], [227, 272], [318, 214], [283, 332], [496, 161], [790, 211], [60, 362], [108, 339], [312, 210], [748, 229], [13, 463], [886, 257], [48, 362], [301, 486], [155, 474], [231, 264], [111, 537], [310, 452], [384, 357], [598, 383], [125, 527], [93, 444], [120, 459], [108, 431], [120, 421], [800, 217], [305, 447], [113, 531], [314, 447], [240, 282], [183, 486], [896, 269], [188, 423], [432, 329], [312, 415], [503, 158], [323, 201], [391, 418], [188, 415], [289, 288], [401, 355], [181, 398], [278, 287], [748, 230], [78, 402], [71, 411], [806, 224], [897, 263], [180, 412], [66, 410], [160, 486], [148, 329], [384, 416], [350, 345], [125, 388], [312, 416], [325, 211], [281, 327], [158, 489]]
+    \end{Verbatim}
+
+    Save buffer sample to file.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}119}]:} \PY{k+kn}{import} \PY{n+nn}{json}
+          \PY{n}{out} \PY{o}{=} \PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{outdir}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{\PYZus{}buffersample.txt}\PY{l+s}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{n}{firename}\PY{p}{)}
+          \PY{k}{with} \PY{n+nb}{open}\PY{p}{(}\PY{n}{out}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{w}\PY{l+s}{\PYZdq{}}\PY{p}{)} \PY{k}{as} \PY{n}{sink}\PY{p}{:}
+              \PY{n}{sink}\PY{o}{.}\PY{n}{write}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZsh{}i and j coordinates for random sample from buffer pixels around fire candidate pixels, }\PY{l+s+si}{\PYZpc{}s}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{n}{firename}\PY{o}{.}\PY{n}{capitalize}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+              \PY{n}{sink}\PY{o}{.}\PY{n}{write}\PY{p}{(}\PY{n}{json}\PY{o}{.}\PY{n}{dumps}\PY{p}{(}\PY{n}{buffersample}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+    Calculate spectra at buffer sample pixels.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}21}]:} \PY{n}{loadfromfile} \PY{o}{=} \PY{n+nb+bp}{False}
+         \PY{n}{calculate} \PY{o}{=} \PY{n+nb+bp}{False}
+         
+         \PY{k}{if} \PY{n}{loadfromfile}\PY{p}{:}
+             \PY{k}{try}\PY{p}{:}
+                 \PY{n}{infn} \PY{o}{=} \PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{outdir}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{\PYZus{}bufferspecs.dat}\PY{l+s}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{n}{firename}\PY{p}{)}
+                 \PY{k}{with} \PY{n+nb}{open}\PY{p}{(}\PY{n}{infn}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{rU}\PY{l+s}{\PYZdq{}}\PY{p}{)} \PY{k}{as} \PY{n}{source}\PY{p}{:}
+                     \PY{n}{specs\PYZus{}buffer} \PY{o}{=} \PY{n}{pickle}\PY{o}{.}\PY{n}{load}\PY{p}{(}\PY{n}{source}\PY{p}{)}
+             \PY{k}{except} \PY{n+ne}{IOError}\PY{p}{:}
+                 \PY{n}{calculate} \PY{o}{=} \PY{n+nb+bp}{True}
+         \PY{k}{if} \PY{p}{(}\PY{n}{calculate} \PY{o+ow}{or} \PY{o+ow}{not} \PY{n}{loadfromfile}\PY{p}{)}\PY{p}{:}
+             \PY{n}{specs\PYZus{}buffer} \PY{o}{=} \PY{p}{[}\PY{n}{hypsc}\PY{o}{.}\PY{n}{spectrum}\PY{p}{(}\PY{n}{i}\PY{p}{,} \PY{n}{j}\PY{p}{)} \PY{k}{for} \PY{n}{i}\PY{p}{,} \PY{n}{j} \PY{o+ow}{in} \PY{n}{buffersample}\PY{p}{]}
+\end{Verbatim}
+
+    Alternatively, calculate spectra for ALL buffer pixels.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}13}]:} \PY{n}{i\PYZus{}buffer}\PY{p}{,} \PY{n}{j\PYZus{}buffer} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{where}\PY{p}{(}\PY{n}{firemask\PYZus{}ext} \PY{o}{==} \PY{l+m+mf}{0.5}\PY{p}{)}
+         \PY{n}{bufferall} \PY{o}{=} \PY{n+nb}{zip}\PY{p}{(}\PY{n}{i\PYZus{}buffer}\PY{p}{,} \PY{n}{j\PYZus{}buffer}\PY{p}{)}
+         \PY{k}{print}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{bufferall}\PY{p}{)}\PY{p}{)}
+         
+         \PY{n}{loadfromfile} \PY{o}{=} \PY{n+nb+bp}{False}
+         \PY{n}{calculate} \PY{o}{=} \PY{n+nb+bp}{False}
+         
+         \PY{k}{if} \PY{n}{loadfromfile}\PY{p}{:}
+             \PY{k}{try}\PY{p}{:}
+                 \PY{n}{infn} \PY{o}{=} \PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{outdir}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{\PYZus{}bufferallspecs.dat}\PY{l+s}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{n}{firename}\PY{p}{)}
+                 \PY{k}{with} \PY{n+nb}{open}\PY{p}{(}\PY{n}{infn}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{rU}\PY{l+s}{\PYZdq{}}\PY{p}{)} \PY{k}{as} \PY{n}{source}\PY{p}{:}
+                     \PY{n}{specs\PYZus{}bufferall} \PY{o}{=} \PY{n}{pickle}\PY{o}{.}\PY{n}{load}\PY{p}{(}\PY{n}{source}\PY{p}{)}
+             \PY{k}{except} \PY{n+ne}{IOError}\PY{p}{:}
+                 \PY{n}{calculate} \PY{o}{=} \PY{n+nb+bp}{True}
+         \PY{k}{if} \PY{p}{(}\PY{n}{calculate} \PY{o+ow}{or} \PY{o+ow}{not} \PY{n}{loadfromfile}\PY{p}{)}\PY{p}{:}
+             \PY{n}{specs\PYZus{}bufferall} \PY{o}{=} \PY{p}{[}\PY{n}{hypsc}\PY{o}{.}\PY{n}{spectrum}\PY{p}{(}\PY{n}{i}\PY{p}{,} \PY{n}{j}\PY{p}{)} \PY{k}{for} \PY{n}{i}\PY{p}{,} \PY{n}{j} \PY{o+ow}{in} \PY{n}{bufferall}\PY{p}{]}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+20109
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}15}]:} \PY{n}{specs\PYZus{}bufferall}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}15}]:} [59.674999,
+          57.25,
+          56.900002,
+          57.900002,
+          58.400002,
+          58.799999,
+          53.875,
+          51.5,
+          50.200001,
+          47.125,
+          48.025002,
+          47.5,
+          47.224998,
+          45.575001,
+          41.825001,
+          37.724998,
+          37.099998,
+          35.075001,
+          35.174999,
+          31.775,
+          30.025,
+          29.5,
+          28.225,
+          25.475,
+          25.525,
+          23.975,
+          22.275,
+          26.424999,
+          36.974998,
+          40.0,
+          51.974998,
+          62.700001,
+          63.125,
+          42.625,
+          64.574997,
+          66.099998,
+          63.375,
+          62.049999,
+          54.075001,
+          50.150002,
+          55.174999,
+          61.525002,
+          61.325001,
+          61.349998,
+          59.974998,
+          57.125,
+          48.25,
+          38.875,
+          41.262501,
+          35.5,
+          35.762501,
+          33.224998,
+          17.487499,
+          16.887501,
+          20.1625,
+          28.6875,
+          36.087502,
+          41.424999,
+          45.737499,
+          45.924999,
+          46.700001,
+          46.512501,
+          45.5,
+          43.700001,
+          43.787498,
+          41.400002,
+          40.0,
+          37.950001,
+          33.337502,
+          26.6875,
+          12.55,
+          5.375,
+          8.0749998,
+          8.5,
+          13.95,
+          21.737499,
+          23.325001,
+          22.862499,
+          23.4125,
+          23.4,
+          24.3375,
+          25.8125,
+          27.15,
+          26.4625,
+          23.737499,
+          20.237499,
+          23.1875,
+          23.737499,
+          22.5375,
+          19.174999,
+          15.9625,
+          11.35,
+          7.7874999,
+          2.4875,
+          0.0125,
+          0.0125,
+          0.0125,
+          0.0125,
+          0.0125,
+          0.0125,
+          0.0125,
+          0.125,
+          0.1875,
+          0.44999999,
+          0.98750001,
+          0.55000001,
+          1.2,
+          2.4875,
+          4.5875001,
+          5.75,
+          6.6374998,
+          7.5500002,
+          8.1999998,
+          8.6875,
+          8.4750004,
+          7.8499999,
+          8.1999998,
+          8.5874996,
+          8.375,
+          8.3500004,
+          9.3125,
+          9.5500002,
+          8.8500004,
+          9.1000004,
+          8.9125004,
+          8.6875,
+          8.1374998,
+          7.9749999,
+          7.8125,
+          7.3375001,
+          6.7624998,
+          6.3000002,
+          5.6875,
+          5.5500002,
+          4.8125,
+          3.7375,
+          2.7625,
+          1.95,
+          0.83749998,
+          0.3125,
+          0.0125,
+          0.0125,
+          0.16249999,
+          0.16249999,
+          0.16249999,
+          0.25,
+          0.0125,
+          0.0125,
+          0.0125,
+          0.0125,
+          0.0125,
+          0.0125,
+          0.0625,
+          0.050000001,
+          0.0125,
+          0.2,
+          0.69999999,
+          0.55000001,
+          0.0125,
+          0.075000003,
+          0.82499999,
+          1.25,
+          1.05,
+          0.5625,
+          0.97500002,
+          1.1875,
+          1.3625,
+          1.4,
+          1.675,
+          1.65,
+          1.4,
+          1.4,
+          1.8625,
+          1.75,
+          1.4,
+          1.45,
+          1.6,
+          1.5375,
+          1.325,
+          1.4625,
+          1.7875,
+          1.6375,
+          1.375,
+          1.2,
+          1.1375,
+          1.05,
+          1.05,
+          0.91250002,
+          1.0125,
+          0.96249998,
+          0.77499998,
+          0.67500001,
+          0.625,
+          0.69999999,
+          0.46250001,
+          0.28749999,
+          1.475,
+          1.9375]
+\end{Verbatim}
+        
+    Pickle spectra.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}16}]:} \PY{n}{out} \PY{o}{=} \PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{outdir}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{\PYZus{}bufferspecs.dat}\PY{l+s}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{n}{firename}\PY{p}{)}
+         \PY{k}{with} \PY{n+nb}{open}\PY{p}{(}\PY{n}{out}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{w}\PY{l+s}{\PYZdq{}}\PY{p}{)} \PY{k}{as} \PY{n}{sink}\PY{p}{:}
+             \PY{n}{pickle}\PY{o}{.}\PY{n}{dump}\PY{p}{(}\PY{n}{specs\PYZus{}buffer}\PY{p}{,} \PY{n}{sink}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+        ---------------------------------------------------------------------------
+    NameError                                 Traceback (most recent call last)
+
+        <ipython-input-16-448eb3f96f57> in <module>()
+          1 out = os.path.join(outdir, "\%s\_bufferspecs.dat" \% firename)
+          2 with open(out, "w") as sink:
+    ----> 3     pickle.dump(specs\_buffer, sink)
+    
+
+        NameError: name 'specs\_buffer' is not defined
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}19}]:} \PY{n}{out} \PY{o}{=} \PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{outdir}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{\PYZus{}bufferallspecs\PYZus{}calib.dat}\PY{l+s}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{n}{firename}\PY{p}{)}
+         \PY{k}{with} \PY{n+nb}{open}\PY{p}{(}\PY{n}{out}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{w}\PY{l+s}{\PYZdq{}}\PY{p}{)} \PY{k}{as} \PY{n}{sink}\PY{p}{:}
+             \PY{n}{pickle}\PY{o}{.}\PY{n}{dump}\PY{p}{(}\PY{n}{bufferall}\PY{p}{,} \PY{n}{sink}\PY{p}{)}
+\end{Verbatim}
+
+    Save to HDF5 file.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}16}]:} \PY{n}{outfn} \PY{o}{=} \PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{outdir}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{\PYZus{}bufferallspecs\PYZus{}calib.hdf5}\PY{l+s}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{n}{firename}\PY{p}{)}
+         \PY{n}{rh}\PY{o}{.}\PY{n}{save\PYZus{}hypspec\PYZus{}to\PYZus{}hdf5}\PY{p}{(}\PY{n}{outfn}\PY{p}{,} \PY{n}{hypsc}\PY{p}{,} \PY{n}{specs\PYZus{}bufferall}\PY{p}{,} \PY{n}{i\PYZus{}buffer}\PY{p}{,} \PY{n}{j\PYZus{}buffer}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}26}]:} \PY{n}{i\PYZus{}buffersample} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{n}{item}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{k}{for} \PY{n}{item} \PY{o+ow}{in} \PY{n}{buffersample}\PY{p}{]}\PY{p}{)}
+         \PY{n}{j\PYZus{}buffersample} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{n}{item}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{k}{for} \PY{n}{item} \PY{o+ow}{in} \PY{n}{buffersample}\PY{p}{]}\PY{p}{)}
+         \PY{n}{outfn} \PY{o}{=} \PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{outdir}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{\PYZus{}buffersamplespecs\PYZus{}calib.hdf5}\PY{l+s}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{n}{firename}\PY{p}{)}
+         \PY{n}{specs\PYZus{}buffer\PYZus{}arr} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{specs\PYZus{}buffer}\PY{p}{)}
+         \PY{n}{rh}\PY{o}{.}\PY{n}{save\PYZus{}hypspec\PYZus{}to\PYZus{}hdf5}\PY{p}{(}\PY{n}{outfn}\PY{p}{,} \PY{n}{hypsc}\PY{p}{,} \PY{n}{specs\PYZus{}buffer\PYZus{}arr}\PY{p}{,} \PY{n}{i\PYZus{}buffersample}\PY{p}{,} \PY{n}{j\PYZus{}buffersample}\PY{p}{)}
+\end{Verbatim}
+
+
+    \subsubsection{Outside pixels}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}128}]:} \PY{n}{N}\PY{o}{=}\PY{l+m+mi}{100}
+          \PY{n}{loadfromfile} \PY{o}{=} \PY{n+nb+bp}{True}
+          \PY{k}{if} \PY{n}{loadfromfile}\PY{p}{:}
+              \PY{n}{fn} \PY{o}{=} \PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{outdir}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{\PYZus{}outsidesample.txt}\PY{l+s}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{n}{firename}\PY{p}{)}
+              \PY{k}{with} \PY{n+nb}{open}\PY{p}{(}\PY{n}{fn}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{rU}\PY{l+s}{\PYZdq{}}\PY{p}{)} \PY{k}{as} \PY{n}{source}\PY{p}{:}
+                  \PY{k}{for} \PY{n}{line} \PY{o+ow}{in} \PY{n}{source}\PY{p}{:}
+                      \PY{k}{if} \PY{n}{line}\PY{o}{.}\PY{n}{startswith}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{\PYZsh{}}\PY{l+s}{\PYZsq{}}\PY{p}{)}\PY{p}{:}
+                          \PY{k}{continue}
+                      \PY{n}{outsidesample} \PY{o}{=} \PY{n}{json}\PY{o}{.}\PY{n}{loads}\PY{p}{(}\PY{n}{line}\PY{p}{)}
+          \PY{k}{else}\PY{p}{:}
+              \PY{n}{i\PYZus{}outside}\PY{p}{,} \PY{n}{j\PYZus{}outside} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{where}\PY{p}{(}\PY{n}{firemask\PYZus{}ext} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{)}
+              \PY{n}{outsidesample} \PY{o}{=} \PY{n}{random}\PY{o}{.}\PY{n}{sample}\PY{p}{(}\PY{n+nb}{zip}\PY{p}{(}\PY{n}{i\PYZus{}outside}\PY{p}{,} \PY{n}{j\PYZus{}outside}\PY{p}{)}\PY{p}{,} \PY{n}{N}\PY{p}{)}
+          \PY{k}{print}\PY{p}{(}\PY{n}{outsidesample}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[[133, 113], [304, 305], [272, 260], [110, 314], [217, 313], [115, 167], [161, 317], [60, 271], [101, 294], [129, 301], [16, 274], [33, 252], [129, 96], [157, 321], [340, 261], [145, 344], [255, 267], [135, 339], [279, 207], [4, 42], [332, 291], [15, 184], [70, 49], [86, 16], [168, 326], [150, 22], [8, 87], [305, 208], [268, 26], [45, 211], [153, 8], [27, 189], [94, 41], [120, 294], [207, 17], [95, 101], [83, 10], [335, 82], [344, 200], [195, 245], [214, 293], [242, 49], [239, 254], [135, 338], [233, 353], [147, 274], [275, 39], [197, 211], [290, 81], [127, 21], [284, 295], [262, 71], [25, 210], [114, 128], [145, 5], [327, 302], [58, 353], [162, 44], [94, 354], [232, 366], [313, 136], [221, 355], [278, 24], [18, 273], [23, 26], [70, 154], [161, 272], [40, 255], [83, 7], [218, 257], [220, 215], [25, 300], [57, 223], [165, 262], [0, 178], [59, 161], [114, 282], [333, 72], [64, 129], [323, 345], [343, 132], [190, 306], [185, 17], [110, 323], [244, 208], [293, 182], [241, 265], [118, 304], [245, 2], [203, 349], [293, 318], [184, 237], [344, 177], [301, 256], [338, 66], [97, 130], [88, 341], [128, 62], [298, 311], [75, 247]]
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}127}]:} \PY{k+kn}{import} \PY{n+nn}{json}
+          \PY{n}{out} \PY{o}{=} \PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{outdir}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{\PYZus{}outsidesample.txt}\PY{l+s}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{n}{firename}\PY{p}{)}
+          \PY{k}{with} \PY{n+nb}{open}\PY{p}{(}\PY{n}{out}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{w}\PY{l+s}{\PYZdq{}}\PY{p}{)} \PY{k}{as} \PY{n}{sink}\PY{p}{:}
+              \PY{n}{sink}\PY{o}{.}\PY{n}{write}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZsh{}i and j coordinates for random sample from pixels other than fire or buffer pixel, }\PY{l+s+si}{\PYZpc{}s}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{n}{firename}\PY{o}{.}\PY{n}{capitalize}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+              \PY{n}{sink}\PY{o}{.}\PY{n}{write}\PY{p}{(}\PY{n}{json}\PY{o}{.}\PY{n}{dumps}\PY{p}{(}\PY{n}{outsidesample}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}129}]:} \PY{n}{loadfromfile} \PY{o}{=} \PY{n+nb+bp}{True}
+          
+          \PY{k}{if} \PY{n}{loadfromfile}\PY{p}{:}
+              \PY{k}{try}\PY{p}{:}
+                  \PY{n}{infn} \PY{o}{=} \PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{outdir}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{\PYZus{}outsidespecs.dat}\PY{l+s}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{n}{firename}\PY{p}{)}
+                  \PY{k}{with} \PY{n+nb}{open}\PY{p}{(}\PY{n}{infn}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{rU}\PY{l+s}{\PYZdq{}}\PY{p}{)} \PY{k}{as} \PY{n}{source}\PY{p}{:}
+                      \PY{n}{specs\PYZus{}outside} \PY{o}{=} \PY{n}{pickle}\PY{o}{.}\PY{n}{load}\PY{p}{(}\PY{n}{source}\PY{p}{)}
+              \PY{k}{except} \PY{n+ne}{IOError}\PY{p}{:}
+                  \PY{n}{calculate} \PY{o}{=} \PY{n+nb+bp}{True}
+          \PY{k}{if} \PY{p}{(}\PY{n}{calculate} \PY{o+ow}{or} \PY{o+ow}{not} \PY{n}{loadfromfile}\PY{p}{)}\PY{p}{:}
+              \PY{n}{specs\PYZus{}outside} \PY{o}{=} \PY{p}{[}\PY{n}{hypsc}\PY{o}{.}\PY{n}{spectrum}\PY{p}{(}\PY{n}{i}\PY{p}{,} \PY{n}{j}\PY{p}{)} \PY{k}{for} \PY{n}{i}\PY{p}{,} \PY{n}{j} \PY{o+ow}{in} \PY{n}{outsidesample}\PY{p}{]}
+\end{Verbatim}
+
+    Pickle spectra.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}130}]:} \PY{n}{out} \PY{o}{=} \PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{outdir}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{\PYZus{}outsidespecs.dat}\PY{l+s}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{n}{firename}\PY{p}{)}
+          \PY{k}{with} \PY{n+nb}{open}\PY{p}{(}\PY{n}{out}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{w}\PY{l+s}{\PYZdq{}}\PY{p}{)} \PY{k}{as} \PY{n}{sink}\PY{p}{:}
+              \PY{n}{pickle}\PY{o}{.}\PY{n}{dump}\PY{p}{(}\PY{n}{specs\PYZus{}outside}\PY{p}{,} \PY{n}{sink}\PY{p}{)}
+\end{Verbatim}
+
+
+    \subsection{Plot spectra}
+
+
+    Fire candidate pixels first: loop through fire (candidate) pixel sectra,
+retrieve mod HDFI and CIBR, plot.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}64}]:} \PY{n}{saveout} \PY{o}{=} \PY{n+nb+bp}{False}
+         \PY{k}{for} \PY{n}{idx}\PY{p}{,} \PY{n}{spec} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n}{specs}\PY{p}{[}\PY{l+m+mi}{50}\PY{p}{:}\PY{l+m+mi}{55}\PY{p}{]}\PY{p}{)}\PY{p}{:}
+             \PY{n}{f}\PY{p}{,} \PY{n}{ax} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{18}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}
+             \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Wavelength (nm)}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+             \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Spectral radiance}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+             \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xlim}\PY{p}{(}\PY{l+m+mi}{400}\PY{p}{,} \PY{l+m+mi}{2500}\PY{p}{)}
+             \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}ylim}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{70}\PY{p}{)}
+             \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{ }\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{ fire: Spectrum for fire candidate pixel at }\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{, }\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n}{fireyear}\PY{p}{,} \PY{n}{firename}\PY{o}{.}\PY{n}{capitalize}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{i\PYZus{}fire}\PY{p}{[}\PY{n}{idx}\PY{p}{]}\PY{p}{,} \PY{n}{j\PYZus{}fire}\PY{p}{[}\PY{n}{idx}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+             \PY{n}{ax}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{hypsc}\PY{o}{.}\PY{n}{calibratedwavelength\PYZus{}nm}\PY{p}{,} \PY{n}{spec}\PY{p}{)}  
+             \PY{c}{\PYZsh{}ax.plot(highwavelengths, specs\PYZus{}high[idx], linewidth=5)  }
+             \PY{n}{ax}\PY{o}{.}\PY{n}{vlines}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{770}\PY{p}{,} \PY{l+m+mi}{2010}\PY{p}{,} \PY{l+m+mi}{2060}\PY{p}{,} \PY{l+m+mi}{2430}\PY{p}{]}\PY{p}{,} \PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{p}{[}\PY{l+m+mi}{70}\PY{p}{,} \PY{l+m+mi}{70}\PY{p}{,} \PY{l+m+mi}{70}\PY{p}{,} \PY{l+m+mi}{70}\PY{p}{]}\PY{p}{)}
+             \PY{c}{\PYZsh{}ax.text(1600, 60, \PYZdq{}HFDI\PYZhy{}value: \PYZpc{}.4f\PYZdq{} \PYZpc{} hfdi[i\PYZus{}fire[idx], j\PYZus{}fire[idx]])}
+             \PY{n}{ax}\PY{o}{.}\PY{n}{text}\PY{p}{(}\PY{l+m+mi}{1600}\PY{p}{,} \PY{l+m+mi}{54}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{mod HFDI\PYZhy{}value: }\PY{l+s+si}{\PYZpc{}.4f}\PY{l+s}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{n}{hfdi2}\PY{p}{[}\PY{n}{i\PYZus{}fire}\PY{p}{[}\PY{n}{idx}\PY{p}{]}\PY{p}{,} \PY{n}{j\PYZus{}fire}\PY{p}{[}\PY{n}{idx}\PY{p}{]}\PY{p}{]}\PY{p}{)}
+             \PY{n}{ax}\PY{o}{.}\PY{n}{text}\PY{p}{(}\PY{l+m+mi}{1600}\PY{p}{,} \PY{l+m+mi}{60}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{CIBR\PYZhy{}value: }\PY{l+s+si}{\PYZpc{}.4f}\PY{l+s}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{n}{cibr}\PY{p}{[}\PY{n}{i\PYZus{}fire}\PY{p}{[}\PY{n}{idx}\PY{p}{]}\PY{p}{,} \PY{n}{j\PYZus{}fire}\PY{p}{[}\PY{n}{idx}\PY{p}{]}\PY{p}{]}\PY{p}{)}
+             \PY{n}{ax}\PY{o}{.}\PY{n}{text}\PY{p}{(}\PY{l+m+mi}{1600}\PY{p}{,} \PY{l+m+mi}{57}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{mod CIBR\PYZhy{}value: }\PY{l+s+si}{\PYZpc{}.4f}\PY{l+s}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{n}{cibr2}\PY{p}{[}\PY{n}{i\PYZus{}fire}\PY{p}{[}\PY{n}{idx}\PY{p}{]}\PY{p}{,} \PY{n}{j\PYZus{}fire}\PY{p}{[}\PY{n}{idx}\PY{p}{]}\PY{p}{]}\PY{p}{)}
+             \PY{k}{if} \PY{n}{saveout}\PY{p}{:}
+                 \PY{n}{outfile} \PY{o}{=} \PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{outdir}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{\PYZus{}spectrum\PYZus{}full\PYZus{}}\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{\PYZus{}}\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{.png}\PY{l+s}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n}{firename}\PY{p}{,} \PY{n}{i\PYZus{}fire}\PY{p}{[}\PY{n}{idx}\PY{p}{]}\PY{p}{,} \PY{n}{j\PYZus{}fire}\PY{p}{[}\PY{n}{idx}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+                 \PY{n}{plt}\PY{o}{.}\PY{n}{savefig}\PY{p}{(}\PY{n}{outfile}\PY{p}{,}  \PY{n}{bbox\PYZus{}inches}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{tight}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{dpi}\PY{o}{=}\PY{l+m+mi}{150}\PY{p}{)}
+                 \PY{n}{plt}\PY{o}{.}\PY{n}{close}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Hyperion_NB1_selection_and_classification_files/Hyperion_NB1_selection_and_classification_83_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Hyperion_NB1_selection_and_classification_files/Hyperion_NB1_selection_and_classification_83_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Hyperion_NB1_selection_and_classification_files/Hyperion_NB1_selection_and_classification_83_2.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Hyperion_NB1_selection_and_classification_files/Hyperion_NB1_selection_and_classification_83_3.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Hyperion_NB1_selection_and_classification_files/Hyperion_NB1_selection_and_classification_83_4.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Plot spectra around the CO2 absorption feature to investigate it
+further.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}131}]:} \PY{n}{idx\PYZus{}co2}\PY{p}{,} \PY{n}{bandname}\PY{p}{,} \PY{n}{hyp\PYZus{}co2} \PY{o}{=} \PY{n}{hyp}\PY{o}{.}\PY{n}{find\PYZus{}nearest\PYZus{}hyp}\PY{p}{(}\PY{l+m+mi}{2010}\PY{p}{)}
+          \PY{n}{idx\PYZus{}spec} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{where}\PY{p}{(}\PY{n}{hypsc}\PY{o}{.}\PY{n}{calibratedwavelength\PYZus{}nm} \PY{o}{==} \PY{n}{hyp\PYZus{}co2}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+          \PY{n}{saveout} \PY{o}{=} \PY{n+nb+bp}{False}
+          \PY{n}{f}\PY{p}{,} \PY{n}{ax} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{18}\PY{p}{,} \PY{l+m+mi}{12}\PY{p}{)}\PY{p}{)}
+          \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Wavelength (nm)}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+          \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Spectral radiance}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+          \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xlim}\PY{p}{(}\PY{l+m+mi}{1930}\PY{p}{,} \PY{l+m+mi}{2090}\PY{p}{)}
+          \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}ylim}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{50}\PY{p}{)}
+          \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{ }\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{ fire: Carbon dioxide feature location with a sample of fire pixel spectra}\PY{l+s}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n}{fireyear}\PY{p}{,} \PY{n}{firename}\PY{o}{.}\PY{n}{capitalize}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+          \PY{n}{ax}\PY{o}{.}\PY{n}{vlines}\PY{p}{(}\PY{l+m+mi}{2010}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{70}\PY{p}{)}
+          \PY{n}{ax}\PY{o}{.}\PY{n}{annotate}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{band 185}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{xy}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{2002}\PY{p}{,} \PY{l+m+mi}{35}\PY{p}{)}\PY{p}{,} \PY{n}{xytext}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{2002}\PY{p}{,} \PY{l+m+mi}{45}\PY{p}{)}\PY{p}{,}
+                  \PY{n}{arrowprops}\PY{o}{=}\PY{n+nb}{dict}\PY{p}{(}\PY{n}{facecolor}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{black}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{shrink}\PY{o}{=}\PY{l+m+mf}{0.05}\PY{p}{)}\PY{p}{,}
+                  \PY{p}{)}
+          \PY{n}{ax}\PY{o}{.}\PY{n}{annotate}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{band 188}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{xy}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{2032}\PY{p}{,} \PY{l+m+mi}{35}\PY{p}{)}\PY{p}{,} \PY{n}{xytext}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{2032}\PY{p}{,} \PY{l+m+mi}{45}\PY{p}{)}\PY{p}{,}
+                  \PY{n}{arrowprops}\PY{o}{=}\PY{n+nb}{dict}\PY{p}{(}\PY{n}{facecolor}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{black}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{shrink}\PY{o}{=}\PY{l+m+mf}{0.05}\PY{p}{)}\PY{p}{,}
+                  \PY{p}{)}
+          \PY{n}{ax}\PY{o}{.}\PY{n}{annotate}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{band 183}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{xy}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{1982}\PY{p}{,} \PY{l+m+mi}{35}\PY{p}{)}\PY{p}{,} \PY{n}{xytext}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{1982}\PY{p}{,} \PY{l+m+mi}{45}\PY{p}{)}\PY{p}{,}
+                  \PY{n}{arrowprops}\PY{o}{=}\PY{n+nb}{dict}\PY{p}{(}\PY{n}{facecolor}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{black}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{shrink}\PY{o}{=}\PY{l+m+mf}{0.05}\PY{p}{)}\PY{p}{,}
+                  \PY{p}{)}
+          \PY{k}{for} \PY{n}{idx}\PY{p}{,} \PY{n}{spec} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n}{specs}\PY{p}{[}\PY{l+m+mi}{100}\PY{p}{:}\PY{l+m+mi}{150}\PY{p}{]}\PY{p}{)}\PY{p}{:}
+              \PY{n}{ax}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{hypsc}\PY{o}{.}\PY{n}{calibratedwavelength\PYZus{}nm}\PY{p}{,} \PY{n}{spec}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{s\PYZhy{}}\PY{l+s}{\PYZsq{}}\PY{p}{)}  
+              \PY{n}{ax}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}\PY{n}{hyp\PYZus{}co2}\PY{p}{,} \PY{n}{spec}\PY{p}{[}\PY{n}{idx\PYZus{}spec}\PY{p}{]}\PY{p}{,} \PY{n}{zorder}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{,} \PY{n}{marker}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{o}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{s}\PY{o}{=}\PY{l+m+mi}{100}\PY{p}{)}
+          \PY{c}{\PYZsh{}    ax.plot(highwavelengths, specs\PYZus{}high[idx], linewidth=5)  }
+              \PY{k}{if} \PY{n}{saveout}\PY{p}{:}
+                  \PY{n}{outfile} \PY{o}{=} \PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{outdir}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{\PYZus{}co2\PYZus{}fire\PYZus{}sample.png}\PY{l+s}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{n}{firename}\PY{p}{)}
+                  \PY{n}{plt}\PY{o}{.}\PY{n}{savefig}\PY{p}{(}\PY{n}{outfile}\PY{p}{,}  \PY{n}{dpi}\PY{o}{=}\PY{l+m+mi}{150}\PY{p}{)}
+                  \PY{n}{plt}\PY{o}{.}\PY{n}{close}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Hyperion_NB1_selection_and_classification_files/Hyperion_NB1_selection_and_classification_85_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Plot spectra around the potassium emission feature around 770 nm.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{n}{idx\PYZus{}k}\PY{p}{,} \PY{n}{bandname\PYZus{}k}\PY{p}{,} \PY{n}{hyp\PYZus{}k} \PY{o}{=} \PY{n}{hyp}\PY{o}{.}\PY{n}{find\PYZus{}nearest\PYZus{}hyp}\PY{p}{(}\PY{l+m+mi}{770}\PY{p}{)}
+         \PY{n}{idx\PYZus{}spec} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{where}\PY{p}{(}\PY{n}{hypsc}\PY{o}{.}\PY{n}{calibratedwavelength\PYZus{}nm} \PY{o}{==} \PY{n}{hyp\PYZus{}k}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+         \PY{n}{saveout} \PY{o}{=} \PY{n+nb+bp}{True}
+         \PY{n}{f}\PY{p}{,} \PY{n}{ax} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{18}\PY{p}{,} \PY{l+m+mi}{12}\PY{p}{)}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Wavelength (nm)}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Spectral radiance}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xlim}\PY{p}{(}\PY{l+m+mi}{720}\PY{p}{,} \PY{l+m+mi}{820}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}ylim}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{70}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{ }\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{ fire: Potassium feature location with a sample of fire pixel spectra}\PY{l+s}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n}{fireyear}\PY{p}{,} \PY{n}{firename}\PY{o}{.}\PY{n}{capitalize}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{vlines}\PY{p}{(}\PY{l+m+mi}{770}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{70}\PY{p}{)}
+         \PY{c}{\PYZsh{}ax.annotate(\PYZsq{}band 185\PYZsq{}, xy=(2002, 35), xytext=(2002, 45),}
+         \PY{c}{\PYZsh{}        arrowprops=dict(facecolor=\PYZsq{}black\PYZsq{}, shrink=0.05),}
+         \PY{c}{\PYZsh{}        )}
+         \PY{c}{\PYZsh{}ax.annotate(\PYZsq{}band 188\PYZsq{}, xy=(2032, 35), xytext=(2032, 45),}
+         \PY{c}{\PYZsh{}        arrowprops=dict(facecolor=\PYZsq{}black\PYZsq{}, shrink=0.05),}
+         \PY{c}{\PYZsh{}        )}
+         \PY{c}{\PYZsh{}ax.annotate(\PYZsq{}band 183\PYZsq{}, xy=(1982, 35), xytext=(1982, 45),}
+         \PY{c}{\PYZsh{}        arrowprops=dict(facecolor=\PYZsq{}black\PYZsq{}, shrink=0.05),}
+         \PY{c}{\PYZsh{}        )}
+         \PY{k}{for} \PY{n}{idx}\PY{p}{,} \PY{n}{spec} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n}{specs}\PY{p}{[}\PY{l+m+mi}{100}\PY{p}{:}\PY{l+m+mi}{150}\PY{p}{]}\PY{p}{)}\PY{p}{:}
+             \PY{n}{ax}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{hypsc}\PY{o}{.}\PY{n}{calibratedwavelength\PYZus{}nm}\PY{p}{,} \PY{n}{spec}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{s\PYZhy{}}\PY{l+s}{\PYZsq{}}\PY{p}{)}  
+             \PY{n}{ax}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}\PY{n}{hyp\PYZus{}co2}\PY{p}{,} \PY{n}{spec}\PY{p}{[}\PY{n}{idx\PYZus{}spec}\PY{p}{]}\PY{p}{,} \PY{n}{zorder}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{,} \PY{n}{marker}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{o}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{s}\PY{o}{=}\PY{l+m+mi}{100}\PY{p}{)}
+         \PY{c}{\PYZsh{}    ax.plot(highwavelengths, specs\PYZus{}high[idx], linewidth=5)  }
+             \PY{k}{if} \PY{n}{saveout}\PY{p}{:}
+                 \PY{n}{outfile} \PY{o}{=} \PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{outdir}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{\PYZus{}K\PYZus{}fire\PYZus{}sample.png}\PY{l+s}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{n}{firename}\PY{p}{)}
+                 \PY{n}{plt}\PY{o}{.}\PY{n}{savefig}\PY{p}{(}\PY{n}{outfile}\PY{p}{,}  \PY{n}{dpi}\PY{o}{=}\PY{l+m+mi}{150}\PY{p}{)}
+                 \PY{n}{plt}\PY{o}{.}\PY{n}{close}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+        ---------------------------------------------------------------------------
+    NameError                                 Traceback (most recent call last)
+
+        <ipython-input-10-1f3416e5ffac> in <module>()
+         18 \#        arrowprops=dict(facecolor='black', shrink=0.05),
+         19 \#        )
+    ---> 20 for idx, spec in enumerate(specs[100:150]):
+         21     ax.plot(hypsc.calibratedwavelength\_nm, spec, 's-')
+         22     ax.scatter(hyp\_co2, spec[idx\_spec], zorder=5, marker='o', s=100)
+
+
+        NameError: name 'specs' is not defined
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Hyperion_NB1_selection_and_classification_files/Hyperion_NB1_selection_and_classification_87_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Plot spectra for buffer pixels.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}95}]:} \PY{n}{saveout} \PY{o}{=} \PY{n+nb+bp}{True}
+         \PY{k}{for} \PY{n}{idx}\PY{p}{,} \PY{n}{spec} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n}{specs\PYZus{}buffer}\PY{p}{)}\PY{p}{:}
+             \PY{n}{f}\PY{p}{,} \PY{n}{ax} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{18}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}
+             \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Wavelength (nm)}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+             \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Spectral radiance}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+             \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xlim}\PY{p}{(}\PY{l+m+mi}{400}\PY{p}{,} \PY{l+m+mi}{2500}\PY{p}{)}
+             \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}ylim}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{70}\PY{p}{)}
+             \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{ }\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{ fire: Spectrum for background candidate pixel at }\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{, }\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n}{fireyear}\PY{p}{,} \PY{n}{firename}\PY{o}{.}\PY{n}{capitalize}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{buffersample}\PY{p}{[}\PY{n}{idx}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{buffersample}\PY{p}{[}\PY{n}{idx}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+             \PY{n}{ax}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{hypsc}\PY{o}{.}\PY{n}{calibratedwavelength\PYZus{}nm}\PY{p}{,} \PY{n}{spec}\PY{p}{)}  
+             \PY{n}{ax}\PY{o}{.}\PY{n}{vlines}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{770}\PY{p}{,} \PY{l+m+mi}{2010}\PY{p}{,} \PY{l+m+mi}{2060}\PY{p}{,} \PY{l+m+mi}{2430}\PY{p}{]}\PY{p}{,} \PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{p}{[}\PY{l+m+mi}{70}\PY{p}{,} \PY{l+m+mi}{70}\PY{p}{,} \PY{l+m+mi}{70}\PY{p}{,} \PY{l+m+mi}{70}\PY{p}{]}\PY{p}{)}
+             \PY{n}{ax}\PY{o}{.}\PY{n}{text}\PY{p}{(}\PY{l+m+mi}{1600}\PY{p}{,} \PY{l+m+mi}{54}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{mod HFDI\PYZhy{}value: }\PY{l+s+si}{\PYZpc{}.4f}\PY{l+s}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{n}{hfdi2}\PY{p}{[}\PY{n}{i\PYZus{}fire}\PY{p}{[}\PY{n}{idx}\PY{p}{]}\PY{p}{,} \PY{n}{j\PYZus{}fire}\PY{p}{[}\PY{n}{idx}\PY{p}{]}\PY{p}{]}\PY{p}{)}
+             \PY{n}{ax}\PY{o}{.}\PY{n}{text}\PY{p}{(}\PY{l+m+mi}{1600}\PY{p}{,} \PY{l+m+mi}{60}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{CIBR\PYZhy{}value: }\PY{l+s+si}{\PYZpc{}.4f}\PY{l+s}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{n}{cibr}\PY{p}{[}\PY{n}{i\PYZus{}fire}\PY{p}{[}\PY{n}{idx}\PY{p}{]}\PY{p}{,} \PY{n}{j\PYZus{}fire}\PY{p}{[}\PY{n}{idx}\PY{p}{]}\PY{p}{]}\PY{p}{)}
+             \PY{n}{ax}\PY{o}{.}\PY{n}{text}\PY{p}{(}\PY{l+m+mi}{1600}\PY{p}{,} \PY{l+m+mi}{57}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{mod CIBR\PYZhy{}value: }\PY{l+s+si}{\PYZpc{}.4f}\PY{l+s}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{n}{cibr2}\PY{p}{[}\PY{n}{i\PYZus{}fire}\PY{p}{[}\PY{n}{idx}\PY{p}{]}\PY{p}{,} \PY{n}{j\PYZus{}fire}\PY{p}{[}\PY{n}{idx}\PY{p}{]}\PY{p}{]}\PY{p}{)}
+             \PY{k}{if} \PY{n}{saveout}\PY{p}{:}
+                 \PY{n}{outfile} \PY{o}{=} \PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{outdir}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{\PYZus{}spectrum\PYZus{}full\PYZus{}buffer\PYZus{}}\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{\PYZus{}}\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{.png}\PY{l+s}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n}{firename}\PY{p}{,} \PY{n}{i\PYZus{}fire}\PY{p}{[}\PY{n}{idx}\PY{p}{]}\PY{p}{,} \PY{n}{j\PYZus{}fire}\PY{p}{[}\PY{n}{idx}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+                 \PY{n}{plt}\PY{o}{.}\PY{n}{savefig}\PY{p}{(}\PY{n}{outfile}\PY{p}{,}  \PY{n}{bbox\PYZus{}inches}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{tight}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{dpi}\PY{o}{=}\PY{l+m+mi}{150}\PY{p}{)}
+                 \PY{n}{plt}\PY{o}{.}\PY{n}{close}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}35}]:} \PY{n}{idx\PYZus{}co2}\PY{p}{,} \PY{n}{bandname}\PY{p}{,} \PY{n}{hyp\PYZus{}co2} \PY{o}{=} \PY{n}{hyp}\PY{o}{.}\PY{n}{find\PYZus{}nearest\PYZus{}hyp}\PY{p}{(}\PY{l+m+mi}{2010}\PY{p}{)}
+         \PY{n}{idx\PYZus{}spec} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{where}\PY{p}{(}\PY{n}{hypsc}\PY{o}{.}\PY{n}{calibratedwavelength\PYZus{}nm} \PY{o}{==} \PY{n}{hyp\PYZus{}co2}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+         \PY{n}{saveout} \PY{o}{=} \PY{n+nb+bp}{False}
+         \PY{n}{f}\PY{p}{,} \PY{n}{ax} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{18}\PY{p}{,} \PY{l+m+mi}{12}\PY{p}{)}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Wavelength (nm)}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Spectral radiance}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xlim}\PY{p}{(}\PY{l+m+mi}{1930}\PY{p}{,} \PY{l+m+mi}{2090}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}ylim}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{ }\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{ fire: Carbon dioxide feature location with a sample of background spectra}\PY{l+s}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n}{fireyear}\PY{p}{,} \PY{n}{firename}\PY{o}{.}\PY{n}{capitalize}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{vlines}\PY{p}{(}\PY{l+m+mi}{2010}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{annotate}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{band 185}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{xy}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{2002}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{)}\PY{p}{,} \PY{n}{xytext}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{2002}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{)}\PY{p}{,}
+                 \PY{n}{arrowprops}\PY{o}{=}\PY{n+nb}{dict}\PY{p}{(}\PY{n}{facecolor}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{black}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{shrink}\PY{o}{=}\PY{l+m+mf}{0.05}\PY{p}{)}\PY{p}{,}
+                 \PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{annotate}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{band 188}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{xy}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{2032}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{)}\PY{p}{,} \PY{n}{xytext}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{2032}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{)}\PY{p}{,}
+                 \PY{n}{arrowprops}\PY{o}{=}\PY{n+nb}{dict}\PY{p}{(}\PY{n}{facecolor}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{black}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{shrink}\PY{o}{=}\PY{l+m+mf}{0.05}\PY{p}{)}\PY{p}{,}
+                 \PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{annotate}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{band 183}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{xy}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{1982}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{)}\PY{p}{,} \PY{n}{xytext}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{1982}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{)}\PY{p}{,}
+                 \PY{n}{arrowprops}\PY{o}{=}\PY{n+nb}{dict}\PY{p}{(}\PY{n}{facecolor}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{black}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{shrink}\PY{o}{=}\PY{l+m+mf}{0.05}\PY{p}{)}\PY{p}{,}
+                 \PY{p}{)}
+         \PY{k}{for} \PY{n}{idx}\PY{p}{,} \PY{n}{spec} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n}{specs\PYZus{}buffer}\PY{p}{[}\PY{p}{:}\PY{l+m+mi}{10}\PY{p}{]}\PY{p}{)}\PY{p}{:}
+             \PY{n}{ax}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{hypsc}\PY{o}{.}\PY{n}{calibratedwavelength\PYZus{}nm}\PY{p}{,} \PY{n}{spec}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{s\PYZhy{}}\PY{l+s}{\PYZsq{}}\PY{p}{)}  
+             \PY{n}{ax}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}\PY{n}{hyp\PYZus{}co2}\PY{p}{,} \PY{n}{spec}\PY{p}{[}\PY{n}{idx\PYZus{}spec}\PY{p}{]}\PY{p}{,} \PY{n}{zorder}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{,} \PY{n}{marker}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{o}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{s}\PY{o}{=}\PY{l+m+mi}{100}\PY{p}{)}
+             \PY{k}{if} \PY{n}{saveout}\PY{p}{:}
+                 \PY{n}{outfile} \PY{o}{=} \PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{outdir}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{\PYZus{}spectrum\PYZus{}full\PYZus{}}\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{\PYZus{}}\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{.png}\PY{l+s}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n}{firename}\PY{p}{,} \PY{n}{i\PYZus{}fire}\PY{p}{[}\PY{n}{idx}\PY{p}{]}\PY{p}{,} \PY{n}{j\PYZus{}fire}\PY{p}{[}\PY{n}{idx}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+                 \PY{n}{plt}\PY{o}{.}\PY{n}{savefig}\PY{p}{(}\PY{n}{outfile}\PY{p}{,}  \PY{n}{bbox\PYZus{}inches}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{tight}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{dpi}\PY{o}{=}\PY{l+m+mi}{150}\PY{p}{)}
+                 \PY{n}{plt}\PY{o}{.}\PY{n}{close}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Hyperion_NB1_selection_and_classification_files/Hyperion_NB1_selection_and_classification_90_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Now for outside pixels.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}143}]:} \PY{n}{idx\PYZus{}co2}\PY{p}{,} \PY{n}{bandname}\PY{p}{,} \PY{n}{hyp\PYZus{}co2} \PY{o}{=} \PY{n}{hyp}\PY{o}{.}\PY{n}{find\PYZus{}nearest\PYZus{}hyp}\PY{p}{(}\PY{l+m+mi}{2010}\PY{p}{)}
+          \PY{n}{idx\PYZus{}spec} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{where}\PY{p}{(}\PY{n}{hypsc}\PY{o}{.}\PY{n}{calibratedwavelength\PYZus{}nm} \PY{o}{==} \PY{n}{hyp\PYZus{}co2}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+          \PY{n}{saveout} \PY{o}{=} \PY{n+nb+bp}{False}
+          \PY{n}{f}\PY{p}{,} \PY{n}{ax} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{18}\PY{p}{,} \PY{l+m+mi}{12}\PY{p}{)}\PY{p}{)}
+          \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Wavelength (nm)}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+          \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Spectral radiance}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+          \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xlim}\PY{p}{(}\PY{l+m+mi}{1930}\PY{p}{,} \PY{l+m+mi}{2090}\PY{p}{)}
+          \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}ylim}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{)}
+          \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{ }\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{ fire: Carbon dioxide feature location with a sample of spectra far away from fire}\PY{l+s}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n}{fireyear}\PY{p}{,} \PY{n}{firename}\PY{o}{.}\PY{n}{capitalize}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+          \PY{n}{ax}\PY{o}{.}\PY{n}{vlines}\PY{p}{(}\PY{l+m+mi}{2010}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{)}
+          \PY{n}{ax}\PY{o}{.}\PY{n}{annotate}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{band 185}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{xy}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{2002}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{)}\PY{p}{,} \PY{n}{xytext}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{2002}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{)}\PY{p}{,}
+                  \PY{n}{arrowprops}\PY{o}{=}\PY{n+nb}{dict}\PY{p}{(}\PY{n}{facecolor}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{black}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{shrink}\PY{o}{=}\PY{l+m+mf}{0.05}\PY{p}{)}\PY{p}{,}
+                  \PY{p}{)}
+          \PY{n}{ax}\PY{o}{.}\PY{n}{annotate}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{band 188}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{xy}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{2032}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{)}\PY{p}{,} \PY{n}{xytext}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{2032}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{)}\PY{p}{,}
+                  \PY{n}{arrowprops}\PY{o}{=}\PY{n+nb}{dict}\PY{p}{(}\PY{n}{facecolor}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{black}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{shrink}\PY{o}{=}\PY{l+m+mf}{0.05}\PY{p}{)}\PY{p}{,}
+                  \PY{p}{)}
+          \PY{n}{ax}\PY{o}{.}\PY{n}{annotate}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{band 183}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{xy}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{1982}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{)}\PY{p}{,} \PY{n}{xytext}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{1982}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{)}\PY{p}{,}
+                  \PY{n}{arrowprops}\PY{o}{=}\PY{n+nb}{dict}\PY{p}{(}\PY{n}{facecolor}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{black}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{shrink}\PY{o}{=}\PY{l+m+mf}{0.05}\PY{p}{)}\PY{p}{,}
+                  \PY{p}{)}
+          \PY{k}{for} \PY{n}{idx}\PY{p}{,} \PY{n}{spec} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n}{specs\PYZus{}outside}\PY{p}{[}\PY{p}{:}\PY{l+m+mi}{10}\PY{p}{]}\PY{p}{)}\PY{p}{:}
+              \PY{n}{ax}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{hypsc}\PY{o}{.}\PY{n}{calibratedwavelength\PYZus{}nm}\PY{p}{,} \PY{n}{spec}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{s\PYZhy{}}\PY{l+s}{\PYZsq{}}\PY{p}{)}  
+              \PY{n}{ax}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}\PY{n}{hyp\PYZus{}co2}\PY{p}{,} \PY{n}{spec}\PY{p}{[}\PY{n}{idx\PYZus{}spec}\PY{p}{]}\PY{p}{,} \PY{n}{zorder}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{,} \PY{n}{marker}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{o}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{s}\PY{o}{=}\PY{l+m+mi}{100}\PY{p}{)}
+              \PY{k}{if} \PY{n}{saveout}\PY{p}{:}
+                  \PY{n}{outfile} \PY{o}{=} \PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{outdir}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{\PYZus{}spectrum\PYZus{}outside\PYZus{}full\PYZus{}}\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{\PYZus{}}\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{.png}\PY{l+s}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n}{firename}\PY{p}{,} \PY{n}{i\PYZus{}fire}\PY{p}{[}\PY{n}{idx}\PY{p}{]}\PY{p}{,} \PY{n}{j\PYZus{}fire}\PY{p}{[}\PY{n}{idx}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+                  \PY{n}{plt}\PY{o}{.}\PY{n}{savefig}\PY{p}{(}\PY{n}{outfile}\PY{p}{,}  \PY{n}{bbox\PYZus{}inches}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{tight}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{dpi}\PY{o}{=}\PY{l+m+mi}{150}\PY{p}{)}
+                  \PY{n}{plt}\PY{o}{.}\PY{n}{close}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Hyperion_NB1_selection_and_classification_files/Hyperion_NB1_selection_and_classification_92_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}137}]:} \PY{n}{idx\PYZus{}k}\PY{p}{,} \PY{n}{bandname\PYZus{}k}\PY{p}{,} \PY{n}{hyp\PYZus{}k} \PY{o}{=} \PY{n}{hyp}\PY{o}{.}\PY{n}{find\PYZus{}nearest\PYZus{}hyp}\PY{p}{(}\PY{l+m+mi}{770}\PY{p}{)}
+          \PY{n}{idx\PYZus{}spec} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{where}\PY{p}{(}\PY{n}{hypsc}\PY{o}{.}\PY{n}{calibratedwavelength\PYZus{}nm} \PY{o}{==} \PY{n}{hyp\PYZus{}k}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+          \PY{n}{saveout} \PY{o}{=} \PY{n+nb+bp}{False}
+          \PY{n}{f}\PY{p}{,} \PY{n}{ax} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{18}\PY{p}{,} \PY{l+m+mi}{12}\PY{p}{)}\PY{p}{)}
+          \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Wavelength (nm)}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+          \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Spectral radiance}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+          \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xlim}\PY{p}{(}\PY{l+m+mi}{720}\PY{p}{,} \PY{l+m+mi}{820}\PY{p}{)}
+          \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}ylim}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{80}\PY{p}{)}
+          \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{ }\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{ fire: Potassium feature location with a sample of spectra far away from fire}\PY{l+s}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n}{fireyear}\PY{p}{,} \PY{n}{firename}\PY{o}{.}\PY{n}{capitalize}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+          \PY{n}{ax}\PY{o}{.}\PY{n}{vlines}\PY{p}{(}\PY{l+m+mi}{770}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{70}\PY{p}{)}
+          \PY{n}{ax}\PY{o}{.}\PY{n}{annotate}\PY{p}{(}\PY{n}{bandname\PYZus{}k}\PY{p}{,} \PY{n}{xy}\PY{o}{=}\PY{p}{(}\PY{n}{hyp\PYZus{}k}\PY{p}{,} \PY{l+m+mi}{65}\PY{p}{)}\PY{p}{,} \PY{n}{xytext}\PY{o}{=}\PY{p}{(}\PY{n}{hyp\PYZus{}k}\PY{p}{,} \PY{l+m+mi}{75}\PY{p}{)}\PY{p}{,}
+                  \PY{n}{arrowprops}\PY{o}{=}\PY{n+nb}{dict}\PY{p}{(}\PY{n}{facecolor}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{black}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{shrink}\PY{o}{=}\PY{l+m+mf}{0.05}\PY{p}{)}\PY{p}{,}
+                  \PY{p}{)}
+          \PY{c}{\PYZsh{}ax.annotate(\PYZsq{}band 188\PYZsq{}, xy=(2032, 35), xytext=(2032, 45),}
+          \PY{c}{\PYZsh{}        arrowprops=dict(facecolor=\PYZsq{}black\PYZsq{}, shrink=0.05),}
+          \PY{c}{\PYZsh{}        )}
+          \PY{c}{\PYZsh{}ax.annotate(\PYZsq{}band 183\PYZsq{}, xy=(1982, 35), xytext=(1982, 45),}
+          \PY{c}{\PYZsh{}        arrowprops=dict(facecolor=\PYZsq{}black\PYZsq{}, shrink=0.05),}
+          \PY{c}{\PYZsh{}        )}
+          \PY{k}{for} \PY{n}{idx}\PY{p}{,} \PY{n}{spec} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n}{specs\PYZus{}outside}\PY{p}{[}\PY{l+m+mi}{10}\PY{p}{:}\PY{l+m+mi}{60}\PY{p}{]}\PY{p}{)}\PY{p}{:}
+              \PY{n}{ax}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{hypsc}\PY{o}{.}\PY{n}{calibratedwavelength\PYZus{}nm}\PY{p}{,} \PY{n}{spec}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{s\PYZhy{}}\PY{l+s}{\PYZsq{}}\PY{p}{)}  
+              \PY{n}{ax}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}\PY{n}{hyp\PYZus{}co2}\PY{p}{,} \PY{n}{spec}\PY{p}{[}\PY{n}{idx\PYZus{}spec}\PY{p}{]}\PY{p}{,} \PY{n}{zorder}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{,} \PY{n}{marker}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{o}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{s}\PY{o}{=}\PY{l+m+mi}{100}\PY{p}{)}
+          \PY{c}{\PYZsh{}    ax.plot(highwavelengths, specs\PYZus{}high[idx], linewidth=5)  }
+              \PY{k}{if} \PY{n}{saveout}\PY{p}{:}
+                  \PY{n}{outfile} \PY{o}{=} \PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{outdir}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{\PYZus{}K\PYZus{}outside\PYZus{}sample.png}\PY{l+s}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{n}{firename}\PY{p}{)}
+                  \PY{n}{plt}\PY{o}{.}\PY{n}{savefig}\PY{p}{(}\PY{n}{outfile}\PY{p}{,}  \PY{n}{dpi}\PY{o}{=}\PY{l+m+mi}{150}\PY{p}{)}
+                  \PY{n}{plt}\PY{o}{.}\PY{n}{close}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Hyperion_NB1_selection_and_classification_files/Hyperion_NB1_selection_and_classification_93_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+
+    \subsection{Classify spectra}
+
+
+    Load buffer pixel, and fire pixel. Then merge. Filter out rows of all
+zero (these are from the no-data areas).
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}39}]:} \PY{n}{infn} \PY{o}{=} \PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{outdir}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{\PYZus{}bufferallspecs\PYZus{}calib.hdf5}\PY{l+s}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{n}{firename}\PY{p}{)}
+         \PY{k}{with} \PY{n}{h5py}\PY{o}{.}\PY{n}{File}\PY{p}{(}\PY{n}{infn}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{r}\PY{l+s}{\PYZdq{}}\PY{p}{)} \PY{k}{as} \PY{n}{infh}\PY{p}{:}
+             \PY{n}{spectest} \PY{o}{=} \PY{n}{infh}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{spectrum}\PY{l+s}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{98}\PY{p}{:}\PY{p}{]}
+             \PY{n}{i\PYZus{}buff} \PY{o}{=} \PY{n}{infh}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{i\PYZus{}row\PYZus{}idx}\PY{l+s}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{o}{.}\PY{o}{.}\PY{o}{.}\PY{p}{]}
+             \PY{n}{j\PYZus{}buff} \PY{o}{=} \PY{n}{infh}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{j\PYZus{}col\PYZus{}idx}\PY{l+s}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{o}{.}\PY{o}{.}\PY{o}{.}\PY{p}{]}
+             \PY{n}{wav} \PY{o}{=} \PY{n}{infh}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{bandwavelenght\PYZus{}nm}\PY{l+s}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{98}\PY{p}{:}\PY{p}{]}
+             \PY{n}{bandnames} \PY{o}{=} \PY{n}{infh}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{bandname}\PY{l+s}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{98}\PY{p}{:}\PY{p}{]}
+         \PY{n}{minspec} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{min}\PY{p}{(}\PY{n}{spectest}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
+         \PY{n}{spectest} \PY{o}{=} \PY{n}{spectest}\PY{p}{[}\PY{n}{np}\PY{o}{.}\PY{n}{any}\PY{p}{(}\PY{n}{spectest} \PY{o}{\PYZgt{}} \PY{l+m+mi}{0}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{]}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}40}]:} \PY{k}{print}\PY{p}{(}\PY{n}{bandnames}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+band125
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}41}]:} \PY{n}{infn} \PY{o}{=} \PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{outdir}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{\PYZus{}firespecs\PYZus{}calib.hdf5}\PY{l+s}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{n}{firename}\PY{p}{)}
+         \PY{k}{with} \PY{n}{h5py}\PY{o}{.}\PY{n}{File}\PY{p}{(}\PY{n}{infn}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{r}\PY{l+s}{\PYZdq{}}\PY{p}{)} \PY{k}{as} \PY{n}{infh}\PY{p}{:}
+             \PY{n}{specfire} \PY{o}{=} \PY{n}{infh}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{spectrum}\PY{l+s}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{98}\PY{p}{:}\PY{p}{]}
+             \PY{n}{i\PYZus{}fire} \PY{o}{=} \PY{n}{infh}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{i\PYZus{}row\PYZus{}idx}\PY{l+s}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{o}{.}\PY{o}{.}\PY{o}{.}\PY{p}{]}
+             \PY{n}{j\PYZus{}fire} \PY{o}{=} \PY{n}{infh}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{j\PYZus{}col\PYZus{}idx}\PY{l+s}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{o}{.}\PY{o}{.}\PY{o}{.}\PY{p}{]}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}42}]:} \PY{n}{specs} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{concatenate}\PY{p}{(}\PY{p}{(}\PY{n}{spectest}\PY{p}{,} \PY{n}{specfire}\PY{p}{)}\PY{p}{)}
+         \PY{n}{i} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{concatenate}\PY{p}{(}\PY{p}{(}\PY{n}{i\PYZus{}buff}\PY{p}{,} \PY{n}{i\PYZus{}fire}\PY{p}{)}\PY{p}{)}
+         \PY{n}{j} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{concatenate}\PY{p}{(}\PY{p}{(}\PY{n}{j\PYZus{}buff}\PY{p}{,} \PY{n}{j\PYZus{}fire}\PY{p}{)}\PY{p}{)}
+         \PY{n}{coords} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n+nb}{zip}\PY{p}{(}\PY{n}{i}\PY{p}{,} \PY{n}{j}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}43}]:} \PY{k}{print}\PY{p}{(}\PY{n}{specs}\PY{o}{.}\PY{n}{shape}\PY{p}{,} \PY{n}{coords}\PY{o}{.}\PY{n}{size}\PY{p}{,} \PY{n}{coords}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+((12219, 100), 24520, (12260, 2))
+    \end{Verbatim}
+
+    Plot a sample of all spectra.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}44}]:} \PY{n}{saveout} \PY{o}{=} \PY{n+nb+bp}{False}
+         \PY{n}{plotsample} \PY{o}{=} \PY{n}{random}\PY{o}{.}\PY{n}{sample}\PY{p}{(}\PY{n}{specs}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{)}
+         
+         \PY{n}{f}\PY{p}{,} \PY{n}{ax} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{18}\PY{p}{,} \PY{l+m+mi}{12}\PY{p}{)}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Wavelength (nm)}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Spectral radiance}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xlim}\PY{p}{(}\PY{l+m+mi}{1400}\PY{p}{,} \PY{l+m+mi}{2500}\PY{p}{)}
+         \PY{c}{\PYZsh{}ax.set\PYZus{}ylim(0, 10)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{ }\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{ fire: All sample spectra for clustering}\PY{l+s}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n}{fireyear}\PY{p}{,} \PY{n}{firename}\PY{o}{.}\PY{n}{capitalize}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+         \PY{k}{for} \PY{n}{spec} \PY{o+ow}{in} \PY{n}{plotsample}\PY{p}{:}
+             \PY{n}{ax}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{wav}\PY{p}{,} \PY{n}{spec}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{s\PYZhy{}}\PY{l+s}{\PYZsq{}}\PY{p}{)}  
+         \PY{k}{if} \PY{n}{saveout}\PY{p}{:}
+             \PY{n}{outfile} \PY{o}{=} \PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{outdir}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{\PYZus{}spectrum\PYZus{}mbk\PYZus{}data02.npz}\PY{l+s}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{n}{firename}\PY{p}{)}
+             \PY{k}{if} \PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{exists}\PY{p}{(}\PY{n}{outfile}\PY{p}{)}\PY{p}{:}
+                 \PY{k}{raise} \PY{n+ne}{Exception}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Won}\PY{l+s}{\PYZsq{}}\PY{l+s}{t overwrite }\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{.}\PY{l+s}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{n}{outfile}\PY{p}{)}
+             \PY{n}{np}\PY{o}{.}\PY{n}{savez}\PY{p}{(}\PY{n}{outfile}\PY{p}{,} \PY{n}{mbk\PYZus{}means\PYZus{}labels}\PY{o}{=}\PY{n}{mbk\PYZus{}means\PYZus{}labels}\PY{p}{,} \PY{n}{mbk\PYZus{}means\PYZus{}cluster\PYZus{}centers}\PY{o}{=}\PY{n}{mbk\PYZus{}means\PYZus{}cluster\PYZus{}centers}\PY{p}{,} \PY{n}{coords}\PY{o}{=}\PY{n}{coords}\PY{p}{)}
+             \PY{n}{outfile} \PY{o}{=} \PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{outdir}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{\PYZus{}spectrum\PYZus{}mbk\PYZus{}clustercenters02.png}\PY{l+s}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{n}{firename}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{savefig}\PY{p}{(}\PY{n}{outfile}\PY{p}{,}  \PY{n}{bbox\PYZus{}inches}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{tight}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{dpi}\PY{o}{=}\PY{l+m+mi}{150}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{close}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Hyperion_NB1_selection_and_classification_files/Hyperion_NB1_selection_and_classification_102_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}47}]:} \PY{k+kn}{from} \PY{n+nn}{sklearn.cluster} \PY{k+kn}{import} \PY{n}{DBSCAN}
+         \PY{k+kn}{from} \PY{n+nn}{sklearn} \PY{k+kn}{import} \PY{n}{metrics}
+         
+         \PY{n}{db} \PY{o}{=} \PY{n}{DBSCAN}\PY{p}{(}\PY{n}{min\PYZus{}samples}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{specs}\PY{p}{)}
+         \PY{n}{core\PYZus{}samples} \PY{o}{=} \PY{n}{db}\PY{o}{.}\PY{n}{core\PYZus{}sample\PYZus{}indices\PYZus{}}
+         \PY{n}{labels} \PY{o}{=} \PY{n}{db}\PY{o}{.}\PY{n}{labels\PYZus{}}
+         
+         \PY{c}{\PYZsh{} Number of clusters in labels, ignoring noise if present.}
+         \PY{n}{n\PYZus{}clusters\PYZus{}} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n+nb}{set}\PY{p}{(}\PY{n}{labels}\PY{p}{)}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{p}{(}\PY{l+m+mi}{1} \PY{k}{if} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1} \PY{o+ow}{in} \PY{n}{labels} \PY{k}{else} \PY{l+m+mi}{0}\PY{p}{)}
+         
+         \PY{k}{print}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Estimated number of clusters: }\PY{l+s+si}{\PYZpc{}d}\PY{l+s}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{n}{n\PYZus{}clusters\PYZus{}}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Estimated number of clusters: 0
+    \end{Verbatim}
+
+    Load pre-computed cluster centers from file and predict
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}49}]:} \PY{k}{with} \PY{n}{np}\PY{o}{.}\PY{n}{load}\PY{p}{(}\PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{outdir}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{\PYZus{}spectrum\PYZus{}mbk\PYZus{}data01.npz}\PY{l+s}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{n}{firename}\PY{p}{)}\PY{p}{)} \PY{k}{as} \PY{n}{npzfile}\PY{p}{:}
+             \PY{k}{for} \PY{n}{fl} \PY{o+ow}{in} \PY{n}{npzfile}\PY{o}{.}\PY{n}{files}\PY{p}{:}
+                 \PY{k}{print}\PY{p}{(}\PY{n}{fl}\PY{p}{)}
+             \PY{n}{mbk\PYZus{}means\PYZus{}cluster\PYZus{}centers} \PY{o}{=} \PY{n}{npzfile}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{mbk\PYZus{}means\PYZus{}cluster\PYZus{}centers}\PY{l+s}{\PYZsq{}}\PY{p}{]}
+             \PY{n}{mbk\PYZus{}means\PYZus{}labels} \PY{o}{=} \PY{n}{npzfile}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{mbk\PYZus{}means\PYZus{}labels}\PY{l+s}{\PYZsq{}}\PY{p}{]}
+             \PY{n}{coords} \PY{o}{=} \PY{n}{npzfile}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{coords}\PY{l+s}{\PYZsq{}}\PY{p}{]}
+             
+         
+         \PY{n}{batch\PYZus{}size} \PY{o}{=} \PY{l+m+mi}{20}
+         \PY{n}{mbk} \PY{o}{=} \PY{n}{MiniBatchKMeans}\PY{p}{(}\PY{n}{init}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{k\PYZhy{}means++}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{n\PYZus{}clusters}\PY{o}{=}\PY{l+m+mi}{6}\PY{p}{,} \PY{n}{batch\PYZus{}size}\PY{o}{=}\PY{n}{batch\PYZus{}size}\PY{p}{,}
+                               \PY{n}{n\PYZus{}init}\PY{o}{=}\PY{l+m+mi}{1000}\PY{p}{,} \PY{n}{max\PYZus{}no\PYZus{}improvement}\PY{o}{=}\PY{l+m+mi}{1000}\PY{p}{,} \PY{n}{verbose}\PY{o}{=}\PY{n+nb+bp}{False}\PY{p}{)}
+         \PY{n}{t0} \PY{o}{=} \PY{n}{time}\PY{o}{.}\PY{n}{time}\PY{p}{(}\PY{p}{)}
+         \PY{n}{mbk}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{specs}\PY{p}{)}
+         \PY{n}{t\PYZus{}mini\PYZus{}batch} \PY{o}{=} \PY{n}{time}\PY{o}{.}\PY{n}{time}\PY{p}{(}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{t0}
+         \PY{n}{mbk\PYZus{}means\PYZus{}labels} \PY{o}{=} \PY{n}{mbk}\PY{o}{.}\PY{n}{labels\PYZus{}}
+         \PY{n}{mbk\PYZus{}means\PYZus{}cluster\PYZus{}centers} \PY{o}{=} \PY{n}{mbk}\PY{o}{.}\PY{n}{cluster\PYZus{}centers\PYZus{}}
+         \PY{n}{mbk\PYZus{}means\PYZus{}labels\PYZus{}unique} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{unique}\PY{p}{(}\PY{n}{mbk\PYZus{}means\PYZus{}labels}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+mbk\_means\_cluster\_centers
+mbk\_means\_labels
+coords
+    \end{Verbatim}
+
+    Fit from scratch
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}53}]:} \PY{k+kn}{from} \PY{n+nn}{sklearn.cluster} \PY{k+kn}{import} \PY{n}{MiniBatchKMeans}
+         \PY{k+kn}{import} \PY{n+nn}{time}
+         
+         \PY{n}{batch\PYZus{}size} \PY{o}{=} \PY{l+m+mi}{20}
+         \PY{n}{mbk} \PY{o}{=} \PY{n}{MiniBatchKMeans}\PY{p}{(}\PY{n}{init}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{k\PYZhy{}means++}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{n\PYZus{}clusters}\PY{o}{=}\PY{l+m+mi}{6}\PY{p}{,} \PY{n}{batch\PYZus{}size}\PY{o}{=}\PY{n}{batch\PYZus{}size}\PY{p}{,}
+                               \PY{n}{n\PYZus{}init}\PY{o}{=}\PY{l+m+mi}{1000}\PY{p}{,} \PY{n}{max\PYZus{}no\PYZus{}improvement}\PY{o}{=}\PY{l+m+mi}{1000}\PY{p}{,} \PY{n}{verbose}\PY{o}{=}\PY{n+nb+bp}{False}\PY{p}{)}
+         \PY{n}{t0} \PY{o}{=} \PY{n}{time}\PY{o}{.}\PY{n}{time}\PY{p}{(}\PY{p}{)}
+         \PY{n}{mbk}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{specs}\PY{p}{)}
+         \PY{n}{t\PYZus{}mini\PYZus{}batch} \PY{o}{=} \PY{n}{time}\PY{o}{.}\PY{n}{time}\PY{p}{(}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{t0}
+         \PY{n}{mbk\PYZus{}means\PYZus{}labels} \PY{o}{=} \PY{n}{mbk}\PY{o}{.}\PY{n}{labels\PYZus{}}
+         \PY{n}{mbk\PYZus{}means\PYZus{}cluster\PYZus{}centers} \PY{o}{=} \PY{n}{mbk}\PY{o}{.}\PY{n}{cluster\PYZus{}centers\PYZus{}}
+         \PY{n}{mbk\PYZus{}means\PYZus{}labels\PYZus{}unique} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{unique}\PY{p}{(}\PY{n}{mbk\PYZus{}means\PYZus{}labels}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}103}]:} \PY{k}{print}\PY{p}{(}\PY{n}{mbk\PYZus{}means\PYZus{}labels}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{mbk\PYZus{}means\PYZus{}labels}\PY{p}{)}\PY{p}{)}
+          \PY{k}{print}\PY{p}{(}\PY{n}{mbk\PYZus{}means\PYZus{}cluster\PYZus{}centers}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+(array([5, 5, 5, \ldots, 4, 4, 4], dtype=int32), 19772)
+[[  1.98023037e-02   2.30824034e-02   8.59029924e-02   1.54764308e-01
+    1.17109950e-01   3.37698883e-01   7.55901211e-01   4.67825338e-01
+    8.87428758e-01   1.78108228e+00   3.27656139e+00   4.00249347e+00
+    4.40643849e+00   4.80408454e+00   5.24398302e+00   5.40304559e+00
+    5.43846473e+00   5.03670446e+00   4.99852767e+00   5.29602826e+00
+    5.02771016e+00   5.03292864e+00   5.47064533e+00   5.52854132e+00
+    5.20643256e+00   5.19045358e+00   5.11843980e+00   4.95387379e+00
+    4.95592199e+00   4.77141415e+00   4.48643433e+00   4.21436417e+00
+    3.96839825e+00   3.67627345e+00   3.44119271e+00   3.32481002e+00
+    3.02163382e+00   2.51291261e+00   1.82363156e+00   1.22277666e+00
+    4.92893612e-01   1.75115768e-01   2.34148658e-01   2.38414272e-01
+    1.45556281e-01   1.41590477e-01   9.13381622e-02   1.00418547e-01
+    1.53734269e-02   1.52398482e-02   8.58406556e-02   9.07444789e-02
+    1.56583949e-02   1.62075519e-02   4.60460701e-02   6.25118739e-02
+    6.75641180e-02   4.22004868e-01   8.29066730e-01   6.50566968e-01
+    3.60781289e-02   4.89046548e-02   7.12051769e-01   1.26527250e+00
+    1.01036274e+00   5.32228093e-01   8.21987058e-01   1.07294882e+00
+    1.15913678e+00   1.23114165e+00   1.38253978e+00   1.36944313e+00
+    1.21133044e+00   1.24818036e+00   1.49414035e+00   1.40003859e+00
+    1.09521491e+00   1.11499347e+00   1.39308953e+00   1.37271135e+00
+    1.21047851e+00   1.29271254e+00   1.38979459e+00   1.32388684e+00
+    1.07220078e+00   9.68407149e-01   1.03238839e+00   1.01156495e+00
+    9.25905367e-01   8.20292092e-01   8.95728450e-01   8.12072548e-01
+    8.61781644e-01   7.92593802e-01   6.52475659e-01   6.73340656e-01
+    6.32554619e-01   5.44060199e-01   5.77659702e-01   6.98720613e-01]
+ [  3.02521010e-02   3.77801122e-02   1.23172269e-01   2.47612045e-01
+    1.47647059e-01   5.09649860e-01   1.21161765e+00   7.74355743e-01
+    1.39161765e+00   2.70721288e+00   4.81957983e+00   5.82269607e+00
+    6.44862745e+00   6.97584034e+00   7.48496499e+00   7.64768208e+00
+    7.67077031e+00   7.06439076e+00   6.96241596e+00   7.33109944e+00
+    6.96072129e+00   6.93967086e+00   7.39011205e+00   7.45127451e+00
+    7.01485995e+00   6.97860643e+00   6.89223389e+00   6.71415267e+00
+    6.57294818e+00   6.39918067e+00   6.13926470e+00   5.81848740e+00
+    5.49710785e+00   5.13943277e+00   4.82135854e+00   4.70363445e+00
+    4.33768207e+00   3.64660364e+00   2.67998599e+00   1.81306723e+00
+    7.50574230e-01   2.66806722e-01   2.33417367e-01   2.20329132e-01
+    1.61610644e-01   1.58480392e-01   7.11484594e-02   7.38235296e-02
+    1.63095240e-02   1.66176473e-02   3.09803924e-02   3.15196081e-02
+    1.33963587e-02   1.50140058e-02   9.53921572e-02   1.47913165e-01
+    2.50126050e-01   1.03674370e+00   1.82985294e+00   1.53602941e+00
+    2.11281513e-01   2.72542017e-01   1.47119748e+00   2.48128852e+00
+    2.15128151e+00   1.29997199e+00   1.63805322e+00   2.10074930e+00
+    2.41668068e+00   2.55206583e+00   2.70671568e+00   2.69329132e+00
+    2.57586834e+00   2.65581933e+00   2.86170168e+00   2.69878851e+00
+    2.33612045e+00   2.36857843e+00   2.60132353e+00   2.55326331e+00
+    2.34953781e+00   2.49266807e+00   2.56250000e+00   2.47135154e+00
+    2.18101541e+00   2.04361345e+00   2.11207283e+00   2.08251400e+00
+    1.89558123e+00   1.72408964e+00   1.89741596e+00   1.76299020e+00
+    1.83393557e+00   1.71271009e+00   1.45810925e+00   1.50051121e+00
+    1.48042017e+00   1.30089636e+00   1.25804622e+00   1.38134454e+00]
+ [  2.11934957e-02   2.69927538e-02   1.08445480e-01   2.03079710e-01
+    8.85093169e-02   3.52978346e-01   9.30779849e-01   5.56265097e-01
+    1.12152778e+00   2.32450397e+00   4.38064613e+00   5.41259489e+00
+    6.13969979e+00   6.76636905e+00   7.39897127e+00   7.68330099e+00
+    7.79897559e+00   7.26698801e+00   7.13245773e+00   7.58841874e+00
+    7.30145575e+00   7.34521652e+00   7.87862751e+00   7.99238484e+00
+    7.48999741e+00   7.46521092e+00   7.35053485e+00   7.11795850e+00
+    6.97997541e+00   6.71772990e+00   6.34704754e+00   5.93439225e+00
+    5.54843858e+00   5.11597222e+00   4.76644453e+00   4.59362707e+00
+    4.16239001e+00   3.44458463e+00   2.48749137e+00   1.64897559e+00
+    6.52139407e-01   2.13817719e-01   2.52117840e-01   2.54183920e-01
+    1.51921584e-01   1.48356625e-01   1.02717391e-01   1.12288647e-01
+    1.56681334e-02   1.55840237e-02   7.67210146e-02   7.99258111e-02
+    1.33669774e-02   1.36171499e-02   4.80439099e-02   6.70117323e-02
+    5.23895792e-02   4.00826000e-01   8.89091615e-01   7.14962906e-01
+    3.95660802e-02   5.42895964e-02   7.79613095e-01   1.38987017e+00
+    1.12000949e+00   5.95596101e-01   8.96314270e-01   1.17652260e+00
+    1.29876208e+00   1.39142944e+00   1.56820868e+00   1.56041882e+00
+    1.40781358e+00   1.45922835e+00   1.70349594e+00   1.60260956e+00
+    1.29690951e+00   1.32859947e+00   1.60857704e+00   1.59063794e+00
+    1.40557712e+00   1.50482661e+00   1.61556030e+00   1.52922705e+00
+    1.23302493e+00   1.09960102e+00   1.15044643e+00   1.11326346e+00
+    1.00657134e+00   8.77633283e-01   9.54695050e-01   8.59094635e-01
+    8.96171929e-01   8.16580400e-01   6.63891045e-01   6.78539079e-01
+    6.53355762e-01   5.60692718e-01   5.66252588e-01   6.77540546e-01]
+ [  2.15951564e-02   2.56746152e-02   1.27896547e-01   2.30886530e-01
+    1.12705561e-01   3.93958364e-01   9.20137540e-01   5.45789729e-01
+    1.07597735e+00   2.18696180e+00   4.06214120e+00   4.93584617e+00
+    5.44459374e+00   5.90128569e+00   6.36321386e+00   6.52126812e+00
+    6.53100987e+00   6.02655292e+00   5.94819480e+00   6.28110517e+00
+    5.95882232e+00   5.94319218e+00   6.36693639e+00   6.42249402e+00
+    6.05686015e+00   6.03706085e+00   5.96182539e+00   5.78675811e+00
+    5.71793990e+00   5.54090858e+00   5.25785244e+00   4.96238040e+00
+    4.68581813e+00   4.35508297e+00   4.07419270e+00   3.95538757e+00
+    3.61983293e+00   3.02059538e+00   2.19202048e+00   1.46555352e+00
+    5.84868814e-01   1.94958140e-01   2.42523172e-01   2.44513380e-01
+    1.52382643e-01   1.49613171e-01   7.20529976e-02   7.80516521e-02
+    1.66728960e-02   1.66728960e-02   5.80206311e-02   6.01229632e-02
+    1.34212889e-02   1.38660489e-02   5.77926448e-02   8.36466588e-02
+    9.60083721e-02   6.25726939e-01   1.24347623e+00   1.01293355e+00
+    6.88873526e-02   9.29660639e-02   1.00078674e+00   1.75301802e+00
+    1.45173419e+00   8.05077367e-01   1.11578151e+00   1.45197526e+00
+    1.63907161e+00   1.73881559e+00   1.89644005e+00   1.88089214e+00
+    1.72338541e+00   1.77357041e+00   1.99723800e+00   1.87111676e+00
+    1.55239386e+00   1.57603341e+00   1.82478883e+00   1.79278480e+00
+    1.61510315e+00   1.72408432e+00   1.81286440e+00   1.73159291e+00
+    1.45232658e+00   1.33189752e+00   1.40246300e+00   1.37846464e+00
+    1.24550568e+00   1.10646210e+00   1.21950964e+00   1.11128532e+00
+    1.17189602e+00   1.08226753e+00   8.92347511e-01   9.20430932e-01
+    8.82080656e-01   7.53401106e-01   7.58613022e-01   8.69199433e-01]
+ [  6.38081400e-02   1.30232559e-01   5.15625000e-01   9.54433138e-01
+    9.50944766e-01   1.75188954e+00   3.07645348e+00   2.34149709e+00
+    3.27550873e+00   5.44563956e+00   8.37238372e+00   9.85232558e+00
+    1.09345204e+01   1.17925872e+01   1.24685320e+01   1.28527616e+01
+    1.29569041e+01   1.23377180e+01   1.24359738e+01   1.31718024e+01
+    1.27827035e+01   1.29239825e+01   1.38193314e+01   1.40649709e+01
+    1.37046512e+01   1.37000000e+01   1.38016716e+01   1.58223837e+01
+    1.57682412e+01   1.56744187e+01   1.54184593e+01   1.50789970e+01
+    1.46290698e+01   1.42090116e+01   1.39313953e+01   1.38603198e+01
+    1.33168605e+01   1.22739098e+01   8.27638083e+00   6.28183139e+00
+    3.04687500e+00   1.31242733e+00   5.64098837e-01   2.07558139e-01
+    7.17296511e-02   6.73691864e-02   1.10683139e-01   1.01308139e-01
+    4.35319767e-02   5.68313955e-02   3.82994190e-02   5.79941867e-02
+    1.56322673e-01   3.69476747e-01   1.46962210e+00   2.01838663e+00
+    3.51438955e+00   7.26119184e+00   1.17058140e+01   1.08752907e+01
+    3.20697675e+00   3.87936047e+00   8.46061048e+00   1.40572675e+01
+    1.35082849e+01   8.60828486e+00   1.12993459e+01   1.30201308e+01
+    1.45646076e+01   1.86183867e+01   1.55611919e+01   1.90847385e+01
+    1.91420784e+01   1.94887355e+01   1.97060320e+01   1.92992733e+01
+    1.89864826e+01   1.90526887e+01   1.91696948e+01   2.03654071e+01
+    2.02573401e+01   2.07414970e+01   2.08172965e+01   2.06722382e+01
+    2.03400434e+01   2.01606831e+01   2.01276890e+01   2.00791425e+01
+    1.98960028e+01   1.95352471e+01   1.99579940e+01   1.82646801e+01
+    1.86095202e+01   1.48393168e+01   1.38084302e+01   1.41603198e+01
+    1.18795784e+01   1.08021802e+01   1.07224565e+01   1.12115552e+01]
+ [  5.09675859e-02   6.43686504e-02   1.79856071e-01   3.37034349e-01
+    2.16588050e-01   6.06748912e-01   1.37053701e+00   9.24625062e-01
+    1.52230286e+00   2.95698476e+00   5.33546202e+00   6.55830914e+00
+    7.34685535e+00   8.08753024e+00   8.73942309e+00   9.03953192e+00
+    9.04418845e+00   8.40373124e+00   8.33464563e+00   8.89603290e+00
+    8.56483431e+00   8.58235365e+00   9.34736332e+00   9.48991291e+00
+    9.05259435e+00   9.04606918e+00   8.89752055e+00   8.66984761e+00
+    8.40551523e+00   8.12948114e+00   7.73419811e+00   7.25942792e+00
+    6.80809144e+00   6.28397436e+00   5.85134252e+00   5.64983067e+00
+    5.12192791e+00   4.23635703e+00   3.08593372e+00   2.07091195e+00
+    8.19611757e-01   2.63975568e-01   2.32686260e-01   2.21014756e-01
+    1.74733914e-01   1.70446299e-01   1.01209483e-01   1.08962264e-01
+    1.74407355e-02   1.79426707e-02   6.87046447e-02   6.93577652e-02
+    1.35038705e-02   1.40541850e-02   6.81845672e-02   9.92985005e-02
+    1.21244558e-01   6.29287615e-01   1.23379898e+00   1.02743711e+00
+    1.01372763e-01   1.31670295e-01   1.03953193e+00   1.82862844e+00
+    1.56043178e+00   8.86550558e-01   1.18245041e+00   1.53171263e+00
+    1.75991171e+00   1.87152878e+00   2.04529511e+00   2.04212627e+00
+    1.92787857e+00   2.00639816e+00   2.19908684e+00   2.07859217e+00
+    1.77690494e+00   1.82004717e+00   2.04990929e+00   2.02359095e+00
+    1.87685051e+00   2.00964562e+00   2.05999637e+00   1.95059870e+00
+    1.66342525e+00   1.50932511e+00   1.51633406e+00   1.46580189e+00
+    1.33050315e+00   1.17920295e+00   1.26918844e+00   1.14521650e+00
+    1.18976173e+00   1.09788945e+00   8.82232704e-01   8.94327527e-01
+    8.69859700e-01   7.32468553e-01   7.19400097e-01   8.07178277e-01]]
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}54}]:} \PY{k}{for} \PY{n}{label} \PY{o+ow}{in} \PY{n}{mbk\PYZus{}means\PYZus{}labels\PYZus{}unique}\PY{p}{:}
+             \PY{n}{number} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{where}\PY{p}{(}\PY{n}{mbk\PYZus{}means\PYZus{}labels} \PY{o}{==} \PY{n}{label}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+             \PY{k}{print}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{: }\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{ pixels}\PY{l+s}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n}{label}\PY{p}{,} \PY{n}{number}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+0: 2894 pixels
+1: 2994 pixels
+2: 194 pixels
+3: 3441 pixels
+4: 19 pixels
+5: 2677 pixels
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}70}]:} \PY{n}{allspec\PYZus{}array} \PY{o}{=} \PY{n}{allspecs}\PY{p}{[}\PY{o}{.}\PY{o}{.}\PY{o}{.}\PY{p}{]}
+         \PY{n}{allspec\PYZus{}list} \PY{o}{=} \PY{n}{allspec\PYZus{}array}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{198}\PY{p}{)}
+         \PY{k}{print}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{max}\PY{p}{(}\PY{n}{allspec\PYZus{}list}\PY{p}{)}\PY{p}{)}
+         \PY{k}{print}\PY{p}{(}\PY{n}{allspec\PYZus{}list}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+         \PY{k}{print}\PY{p}{(}\PY{n}{allspec\PYZus{}list}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{p}{:}\PY{p}{]}\PY{p}{)}
+         \PY{k}{print}\PY{p}{(}\PY{n}{allspec\PYZus{}array}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{p}{:}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+409.587
+(66375, 198)
+[ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.
+  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.
+  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.
+  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.
+  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.
+  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.
+  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.
+  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.
+  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.
+  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.
+  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.]
+[ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.
+  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.
+  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.
+  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.
+  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.
+  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.
+  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.
+  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.
+  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.
+  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.
+  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.]
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{n}{testrnd} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{r}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}55}]:} \PY{n}{saveout} \PY{o}{=} \PY{n+nb+bp}{False}
+         \PY{n}{fn\PYZus{}template} \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{\PYZus{}spectrum\PYZus{}mbk\PYZus{}}\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{03.}\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{\PYZdq{}}
+         
+         \PY{n}{f}\PY{p}{,} \PY{n}{ax} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{18}\PY{p}{,} \PY{l+m+mi}{12}\PY{p}{)}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Wavelength (nm)}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Spectral radiance}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xlim}\PY{p}{(}\PY{l+m+mi}{1400}\PY{p}{,} \PY{l+m+mi}{2500}\PY{p}{)}
+         \PY{c}{\PYZsh{}ax.set\PYZus{}ylim(0, 10)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{ }\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{ fire: MiniBatch K\PYZhy{}means cluster centers}\PY{l+s}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n}{fireyear}\PY{p}{,} \PY{n}{firename}\PY{o}{.}\PY{n}{capitalize}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+         \PY{k}{for} \PY{n}{idx}\PY{p}{,} \PY{n}{spec} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n}{mbk\PYZus{}means\PYZus{}cluster\PYZus{}centers}\PY{p}{)}\PY{p}{:}
+             \PY{n}{ax}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{wav}\PY{p}{,} \PY{n}{spec}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{s\PYZhy{}}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{cluster center nr }\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{n}{idx}\PY{p}{)}  
+             \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{)}
+         \PY{k}{if} \PY{n}{saveout}\PY{p}{:}
+             \PY{n}{outfile} \PY{o}{=} \PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{outdir}\PY{p}{,} \PY{n}{fn\PYZus{}template} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n}{firename}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{data}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{npz}\PY{l+s}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+             \PY{k}{if} \PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{exists}\PY{p}{(}\PY{n}{outfile}\PY{p}{)}\PY{p}{:}
+                 \PY{k}{raise} \PY{n+ne}{Exception}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Won}\PY{l+s}{\PYZsq{}}\PY{l+s}{t overwrite }\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{.}\PY{l+s}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{n}{outfile}\PY{p}{)}
+             \PY{n}{np}\PY{o}{.}\PY{n}{savez}\PY{p}{(}\PY{n}{outfile}\PY{p}{,} \PY{n}{mbk\PYZus{}means\PYZus{}labels}\PY{o}{=}\PY{n}{mbk\PYZus{}means\PYZus{}labels}\PY{p}{,} \PY{n}{mbk\PYZus{}means\PYZus{}cluster\PYZus{}centers}\PY{o}{=}\PY{n}{mbk\PYZus{}means\PYZus{}cluster\PYZus{}centers}\PY{p}{,} \PY{n}{coords}\PY{o}{=}\PY{n}{coords}\PY{p}{)}
+             \PY{n}{outfile} \PY{o}{=} \PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{outdir}\PY{p}{,} \PY{n}{fn\PYZus{}template} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n}{firename}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{clustercenters}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{png}\PY{l+s}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{savefig}\PY{p}{(}\PY{n}{outfile}\PY{p}{,}  \PY{n}{bbox\PYZus{}inches}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{tight}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{dpi}\PY{o}{=}\PY{l+m+mi}{150}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{close}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Hyperion_NB1_selection_and_classification_files/Hyperion_NB1_selection_and_classification_112_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}56}]:} \PY{k+kn}{from} \PY{n+nn}{sklearn.cluster} \PY{k+kn}{import} \PY{n}{KMeans}
+         \PY{k+kn}{import} \PY{n+nn}{time}
+         
+         \PY{n}{km} \PY{o}{=} \PY{n}{KMeans}\PY{p}{(}\PY{n}{init}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{k\PYZhy{}means++}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{n\PYZus{}clusters}\PY{o}{=}\PY{l+m+mi}{6}\PY{p}{,} 
+                               \PY{n}{n\PYZus{}init}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{,} \PY{n}{verbose}\PY{o}{=}\PY{n+nb+bp}{True}\PY{p}{)}
+         \PY{n}{t0} \PY{o}{=} \PY{n}{time}\PY{o}{.}\PY{n}{time}\PY{p}{(}\PY{p}{)}
+         \PY{n}{km}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{specs}\PY{p}{)}
+         \PY{n}{t\PYZus{}km} \PY{o}{=} \PY{n}{time}\PY{o}{.}\PY{n}{time}\PY{p}{(}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{t0}
+         \PY{n}{km\PYZus{}means\PYZus{}labels} \PY{o}{=} \PY{n}{km}\PY{o}{.}\PY{n}{labels\PYZus{}}
+         \PY{n}{km\PYZus{}means\PYZus{}cluster\PYZus{}centers} \PY{o}{=} \PY{n}{km}\PY{o}{.}\PY{n}{cluster\PYZus{}centers\PYZus{}}
+         \PY{n}{km\PYZus{}means\PYZus{}labels\PYZus{}unique} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{unique}\PY{p}{(}\PY{n}{km\PYZus{}means\PYZus{}labels}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Initialization complete
+Iteration  0, inertia 7317143.034
+Iteration  1, inertia 5381393.249
+Iteration  2, inertia 5342248.568
+Iteration  3, inertia 5326543.297
+Iteration  4, inertia 5324038.305
+Iteration  5, inertia 5323578.885
+Iteration  6, inertia 5323474.789
+Converged at iteration 6
+Initialization complete
+Iteration  0, inertia 7190790.784
+Iteration  1, inertia 5566734.909
+Iteration  2, inertia 5372032.773
+Iteration  3, inertia 5168472.199
+Iteration  4, inertia 5160305.837
+Iteration  5, inertia 5150528.641
+Iteration  6, inertia 5145934.290
+Iteration  7, inertia 5145506.914
+Iteration  8, inertia 5145490.317
+Converged at iteration 8
+Initialization complete
+Iteration  0, inertia 10201526.623
+Iteration  1, inertia 6351098.665
+Iteration  2, inertia 6347746.448
+Iteration  3, inertia 6346135.953
+Iteration  4, inertia 6344692.156
+Iteration  5, inertia 6343799.154
+Iteration  6, inertia 6342081.903
+Iteration  7, inertia 6331232.442
+Iteration  8, inertia 6316334.652
+Iteration  9, inertia 6309603.021
+Iteration 10, inertia 6309295.516
+Converged at iteration 10
+Initialization complete
+Iteration  0, inertia 8665374.575
+Iteration  1, inertia 6211244.005
+Iteration  2, inertia 6175093.256
+Iteration  3, inertia 6165749.022
+Iteration  4, inertia 6153358.702
+Iteration  5, inertia 6142353.201
+Iteration  6, inertia 6133290.392
+Iteration  7, inertia 6127237.974
+Iteration  8, inertia 6126238.481
+Iteration  9, inertia 6124788.859
+Converged at iteration 9
+Initialization complete
+Iteration  0, inertia 9244805.387
+Iteration  1, inertia 6226693.915
+Iteration  2, inertia 6194708.052
+Iteration  3, inertia 6172150.202
+Iteration  4, inertia 6151040.093
+Iteration  5, inertia 6137471.300
+Iteration  6, inertia 6131875.324
+Iteration  7, inertia 6129103.335
+Iteration  8, inertia 6128243.422
+Iteration  9, inertia 6127758.503
+Converged at iteration 9
+Initialization complete
+Iteration  0, inertia 9010006.613
+Iteration  1, inertia 6335348.177
+Iteration  2, inertia 5937688.195
+Iteration  3, inertia 5930278.199
+Iteration  4, inertia 5927487.086
+Iteration  5, inertia 5926218.324
+Iteration  6, inertia 5925749.945
+Iteration  7, inertia 5925717.316
+Converged at iteration 7
+Initialization complete
+Iteration  0, inertia 7989104.018
+Iteration  1, inertia 6228271.099
+Iteration  2, inertia 6118307.592
+Iteration  3, inertia 6099057.543
+Iteration  4, inertia 6085626.701
+Iteration  5, inertia 6081506.463
+Iteration  6, inertia 6077621.831
+Iteration  7, inertia 6076229.413
+Iteration  8, inertia 6075010.319
+Converged at iteration 8
+Initialization complete
+Iteration  0, inertia 9792382.776
+Iteration  1, inertia 6953857.490
+Iteration  2, inertia 6476764.197
+Iteration  3, inertia 5674716.339
+Iteration  4, inertia 5247707.655
+Iteration  5, inertia 5070742.435
+Iteration  6, inertia 5030084.086
+Iteration  7, inertia 5020709.123
+Iteration  8, inertia 5015133.801
+Iteration  9, inertia 5012628.808
+Iteration 10, inertia 5012169.388
+Iteration 11, inertia 5012065.293
+Converged at iteration 11
+Initialization complete
+Iteration  0, inertia 8242244.526
+Iteration  1, inertia 6100790.937
+Converged at iteration 1
+Initialization complete
+Iteration  0, inertia 8601463.590
+Iteration  1, inertia 6197426.211
+Iteration  2, inertia 6177734.625
+Iteration  3, inertia 6156935.963
+Iteration  4, inertia 6139362.686
+Iteration  5, inertia 6133424.751
+Iteration  6, inertia 6129008.768
+Iteration  7, inertia 6128204.508
+Iteration  8, inertia 6127744.798
+Converged at iteration 8
+    \end{Verbatim}
+
+    Plot cluster center spectra.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}57}]:} \PY{n}{saveout} \PY{o}{=} \PY{n+nb+bp}{False}
+         \PY{n}{fn\PYZus{}template} \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{\PYZus{}spectrum\PYZus{}km\PYZus{}}\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{02.}\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{\PYZdq{}}
+         
+         \PY{n}{f}\PY{p}{,} \PY{n}{ax} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{18}\PY{p}{,} \PY{l+m+mi}{12}\PY{p}{)}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Wavelength (nm)}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Spectral radiance}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xlim}\PY{p}{(}\PY{l+m+mi}{1400}\PY{p}{,} \PY{l+m+mi}{2500}\PY{p}{)}
+         \PY{c}{\PYZsh{}ax.set\PYZus{}ylim(0, 10)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{ }\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{ fire: K\PYZhy{}means cluster centers}\PY{l+s}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n}{fireyear}\PY{p}{,} \PY{n}{firename}\PY{o}{.}\PY{n}{capitalize}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+         \PY{k}{for} \PY{n}{idx}\PY{p}{,} \PY{n}{spec} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n}{km\PYZus{}means\PYZus{}cluster\PYZus{}centers}\PY{p}{)}\PY{p}{:}
+             \PY{n}{ax}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{wav}\PY{p}{,} \PY{n}{spec}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{s\PYZhy{}}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{cluster center nr }\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{n}{idx}\PY{p}{)}  
+             \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{)}
+         \PY{k}{if} \PY{n}{saveout}\PY{p}{:}
+             \PY{n}{outfile} \PY{o}{=} \PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{outdir}\PY{p}{,} \PY{n}{fn\PYZus{}template} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n}{firename}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{data}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{npz}\PY{l+s}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+             \PY{k}{if} \PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{exists}\PY{p}{(}\PY{n}{outfile}\PY{p}{)}\PY{p}{:}
+                 \PY{k}{raise} \PY{n+ne}{Exception}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Won}\PY{l+s}{\PYZsq{}}\PY{l+s}{t overwrite }\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{.}\PY{l+s}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{n}{outfile}\PY{p}{)}
+             \PY{n}{np}\PY{o}{.}\PY{n}{savez}\PY{p}{(}\PY{n}{outfile}\PY{p}{,} \PY{n}{km\PYZus{}means\PYZus{}labels}\PY{o}{=}\PY{n}{km\PYZus{}means\PYZus{}labels}\PY{p}{,} \PY{n}{km\PYZus{}means\PYZus{}cluster\PYZus{}centers}\PY{o}{=}\PY{n}{km\PYZus{}means\PYZus{}cluster\PYZus{}centers}\PY{p}{,} \PY{n}{coords}\PY{o}{=}\PY{n}{coords}\PY{p}{)}
+             \PY{n}{outfile} \PY{o}{=} \PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{outdir}\PY{p}{,} \PY{n}{fn\PYZus{}template} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n}{firename}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{clustercenters}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{png}\PY{l+s}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{savefig}\PY{p}{(}\PY{n}{outfile}\PY{p}{,}  \PY{n}{bbox\PYZus{}inches}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{tight}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{dpi}\PY{o}{=}\PY{l+m+mi}{150}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{close}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Hyperion_NB1_selection_and_classification_files/Hyperion_NB1_selection_and_classification_115_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}59}]:} \PY{n}{ncl} \PY{o}{=} \PY{l+m+mi}{6}
+         
+         \PY{n}{classification} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n}{b220}\PY{o}{.}\PY{n}{data}\PY{o}{.}\PY{n}{shape}\PY{p}{,} \PY{n}{dtype}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{uint8}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{k}{for} \PY{n}{label} \PY{o+ow}{in} \PY{n}{mbk\PYZus{}means\PYZus{}labels\PYZus{}unique}\PY{p}{:}
+             \PY{k}{for} \PY{n}{i}\PY{p}{,} \PY{n}{j} \PY{o+ow}{in} \PY{n}{coords}\PY{p}{[}\PY{n}{mbk\PYZus{}means\PYZus{}labels} \PY{o}{==} \PY{n}{label}\PY{p}{]}\PY{p}{:}
+                 \PY{n}{classification}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{n}{j}\PY{p}{]} \PY{o}{=} \PY{n}{label} \PY{o}{+} \PY{l+m+mi}{1}
+         \PY{n}{classification\PYZus{}ds} \PY{o}{=} \PY{n}{b220}\PY{o}{.}\PY{n}{clone}\PY{p}{(}\PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{outdir}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{\PYZus{}spectrum\PYZus{}mbk\PYZus{}unsupervised01.tif}\PY{l+s}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{n}{firename}\PY{p}{)}\PY{p}{,} \PY{n}{classification}\PY{p}{)}
+         
+         \PY{n}{bmap} \PY{o}{=} \PY{n}{brewer2mpl}\PY{o}{.}\PY{n}{get\PYZus{}map}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Paired}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{qualitative}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{ncl}\PY{p}{)}
+         \PY{n}{colorsbr} \PY{o}{=} \PY{n}{bmap}\PY{o}{.}\PY{n}{mpl\PYZus{}colors}
+         \PY{n}{colors} \PY{o}{=} \PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{darkgrey}\PY{l+s}{\PYZsq{}}\PY{p}{]} \PY{o}{+} \PY{n}{colorsbr}
+         \PY{c}{\PYZsh{}, \PYZsq{}burlywood\PYZsq{}, \PYZsq{}brown\PYZsq{}, \PYZsq{}yellow\PYZsq{}, \PYZsq{}forestgreen\PYZsq{}, \PYZsq{}darkkhaki\PYZsq{}, \PYZsq{}tomato\PYZsq{}]}
+         \PY{n}{cmap} \PY{o}{=} \PY{n}{mpl}\PY{o}{.}\PY{n}{colors}\PY{o}{.}\PY{n}{ListedColormap}\PY{p}{(}\PY{n}{colors}\PY{p}{)}
+         \PY{n}{bounds} \PY{o}{=} \PY{n+nb}{range}\PY{p}{(}\PY{n}{ncl}\PY{o}{+}\PY{l+m+mi}{2}\PY{p}{)}
+         \PY{n}{norm} \PY{o}{=} \PY{n}{mpl}\PY{o}{.}\PY{n}{colors}\PY{o}{.}\PY{n}{BoundaryNorm}\PY{p}{(}\PY{n}{bounds}\PY{p}{,} \PY{n}{cmap}\PY{o}{.}\PY{n}{N}\PY{p}{)}
+         \PY{n}{labels} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{ncl}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}
+         \PY{n}{labeltext} \PY{o}{=} \PY{n}{labels}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{n+nb}{str}\PY{p}{)}
+         \PY{n}{loc} \PY{o}{=} \PY{n}{labels} \PY{o}{+} \PY{o}{.}\PY{l+m+mi}{5}
+         
+         
+         \PY{n}{fig} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{18}\PY{p}{,} \PY{l+m+mi}{40}\PY{p}{)}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{classification}\PY{p}{,} \PY{n}{cmap}\PY{o}{=}\PY{n}{cmap}\PY{p}{,} \PY{n}{norm}\PY{o}{=}\PY{n}{norm}\PY{p}{)}
+         \PY{n}{cb} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{colorbar}\PY{p}{(}\PY{n}{orientation}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{horizontal}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{pad}\PY{o}{=}\PY{l+m+mf}{0.05}\PY{p}{,} \PY{n}{shrink}\PY{o}{=}\PY{l+m+mf}{0.84}\PY{p}{)}
+         \PY{n}{cb}\PY{o}{.}\PY{n}{set\PYZus{}ticks}\PY{p}{(}\PY{n}{loc}\PY{p}{)}
+         \PY{n}{cb}\PY{o}{.}\PY{n}{set\PYZus{}ticklabels}\PY{p}{(}\PY{n}{labeltext}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Hyperion_NB1_selection_and_classification_files/Hyperion_NB1_selection_and_classification_116_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} 
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}78}]:} \PY{n}{mpl}\PY{o}{.}\PY{n}{image}\PY{o}{.}\PY{n}{imsave}\PY{p}{(}\PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{outdir}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{test1.png}\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{,} \PY{n}{classification}\PY{p}{,} \PY{n}{vmin}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{vmax}\PY{o}{=}\PY{l+m+mi}{6}\PY{p}{,} \PY{n}{cmap}\PY{o}{=}\PY{n}{cmap}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}43}]:} \PY{n}{mbk\PYZus{}means\PYZus{}labels\PYZus{}unique}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}43}]:} array([0, 1, 2, 3, 4], dtype=int32)
+\end{Verbatim}
+        
+
+    \subsection{The built-in Hyperion band data}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}14}]:} \PY{n}{hypdata} \PY{o}{=} \PY{n}{hyp}\PY{o}{.}\PY{n}{gethyperionbands}\PY{p}{(}\PY{p}{)}
+         \PY{k}{print}\PY{p}{(}\PY{n}{hypdata}\PY{o}{.}\PY{n}{dtype}\PY{o}{.}\PY{n}{names}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+('Hyperion\_Band', 'Average\_Wavelength\_nm', 'Full\_Width\_at\_Half\_the\_Maximum\_FWHM\_nm', 'Spatial\_Resolution\_m', 'Not\_Calibrated\_X')
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}25}]:} \PY{n}{np}\PY{o}{.}\PY{n}{logical\PYZus{}not}\PY{p}{(}\PY{n}{hypdata}\PY{o}{.}\PY{n}{Not\PYZus{}Calibrated\PYZus{}X} \PY{o}{==} \PY{l+s}{\PYZsq{}}\PY{l+s}{X}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}25}]:} array([False, False, False, False, False, False, False,  True,  True,
+                 True,  True,  True,  True,  True,  True,  True,  True,  True,
+                 True,  True,  True,  True,  True,  True,  True,  True,  True,
+                 True,  True,  True,  True,  True,  True,  True,  True,  True,
+                 True,  True,  True,  True,  True,  True,  True,  True,  True,
+                 True,  True,  True,  True, False,  True, False,  True, False,
+                 True, False,  True, False,  True, False,  True,  True,  True,
+                 True,  True,  True, False,  True, False,  True, False,  True,
+                False,  True, False,  True, False,  True, False,  True, False,
+                 True, False,  True, False,  True, False,  True, False,  True,
+                False,  True,  True,  True,  True,  True,  True,  True,  True,
+                 True,  True,  True,  True,  True,  True,  True,  True,  True,
+                 True,  True,  True,  True,  True,  True,  True,  True,  True,
+                 True,  True,  True,  True,  True,  True,  True,  True,  True,
+                 True,  True,  True,  True,  True,  True,  True,  True,  True,
+                 True,  True,  True,  True,  True,  True,  True,  True,  True,
+                 True,  True,  True,  True,  True,  True,  True,  True,  True,
+                 True,  True,  True,  True,  True,  True,  True,  True,  True,
+                 True,  True,  True,  True,  True,  True,  True,  True,  True,
+                 True,  True,  True,  True,  True,  True,  True,  True,  True,
+                 True,  True,  True,  True,  True,  True,  True,  True,  True,
+                 True,  True,  True,  True,  True,  True,  True,  True,  True,
+                 True,  True,  True,  True,  True,  True,  True,  True,  True,
+                 True,  True,  True,  True,  True,  True,  True,  True,  True,
+                 True,  True,  True,  True,  True,  True,  True,  True, False,
+                False, False, False, False, False, False, False, False, False,
+                False, False, False, False, False, False, False, False], dtype=bool)
+\end{Verbatim}
+        
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}26}]:} \PY{k}{print}\PY{p}{(}\PY{n}{hypdata}\PY{o}{.}\PY{n}{Average\PYZus{}Wavelength\PYZus{}nm} \PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[  355.59   365.76   375.94   386.11   396.29   406.46   416.64   426.82
+   436.99   447.17   457.34   467.52   477.69   487.87   498.04   508.22
+   518.39   528.57   538.74   548.92   559.09   569.27   579.45   589.62
+   599.8    609.97   620.15   630.32   640.5    650.67   660.85   671.02
+   681.2    691.37   701.55   711.72   721.9    732.07   742.25   752.43
+   762.6    772.78   782.95   793.13   803.3    813.48   823.65   833.83
+   844.     851.92   854.18   862.01   864.35   872.1    874.53   882.19
+   884.7    892.28   894.88   902.36   905.05   912.45   915.23   922.54
+   925.41   932.64   935.58   942.73   945.76   952.82   955.93   962.91
+   966.11   972.99   976.28   983.08   986.46   993.17   996.63  1003.3
+  1006.81  1013.3   1016.98  1023.4   1027.16  1033.49  1037.33  1043.59
+  1047.51  1053.69  1057.68  1063.79  1073.89  1083.99  1094.09  1104.19
+  1114.19  1124.28  1134.38  1144.48  1154.58  1164.68  1174.77  1184.87
+  1194.97  1205.07  1215.17  1225.17  1235.27  1245.36  1255.46  1265.56
+  1275.66  1285.76  1295.86  1305.96  1316.05  1326.05  1336.15  1346.25
+  1356.35  1366.45  1376.55  1386.65  1396.74  1406.84  1416.94  1426.94
+  1437.04  1447.14  1457.23  1467.33  1477.43  1487.53  1497.63  1507.73
+  1517.83  1527.92  1537.92  1548.02  1558.12  1568.22  1578.32  1588.42
+  1598.51  1608.61  1618.71  1628.81  1638.81  1648.9   1659.    1669.1
+  1679.2   1689.3   1699.4   1709.5   1719.6   1729.7   1739.7   1749.79
+  1759.89  1769.99  1780.09  1790.19  1800.29  1810.38  1820.48  1830.58
+  1840.58  1850.68  1860.78  1870.87  1880.98  1891.07  1901.17  1911.27
+  1921.37  1931.47  1941.57  1951.57  1961.66  1971.76  1981.86  1991.96
+  2002.06  2012.15  2022.25  2032.35  2042.45  2052.45  2062.55  2072.65
+  2082.75  2092.84  2102.94  2113.04  2123.14  2133.24  2143.34  2153.34
+  2163.43  2173.53  2183.63  2193.73  2203.83  2213.93  2224.03  2234.12
+  2244.22  2254.22  2264.32  2274.42  2284.52  2294.61  2304.71  2314.81
+  2324.91  2335.01  2345.11  2355.21  2365.2   2375.3   2385.4   2395.5
+  2405.6   2415.7   2425.8   2435.89  2445.99  2456.09  2466.09  2476.19
+  2486.29  2496.39  2506.48  2516.59  2526.68  2536.78  2546.88  2556.98
+  2566.98  2577.08]
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{n}{hyp}\PY{o}{.}\PY{n}{find\PYZus{}nearest\PYZus{}hyp}\PY{p}{(}\PY{l+m+mi}{800}\PY{p}{)}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}6}]:} (44, 'band45', 803.29999999999995)
+\end{Verbatim}
+        
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}30}]:} \PY{n}{hyp}\PY{o}{.}\PY{n}{find\PYZus{}nearest\PYZus{}hyp}\PY{p}{(}\PY{l+m+mi}{2010}\PY{p}{)}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}30}]:} (185, 'band186', 2012.1500000000001)
+\end{Verbatim}
+        
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{n}{boundaryrad220} \PY{o}{=} \PY{n}{a}\PY{o}{.}\PY{n}{clone}\PY{p}{(}\PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{outdir}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{boundaryrad220.tif}\PY{l+s}{\PYZsq{}}\PY{p}{)}\PY{p}{,} \PY{n}{a}\PY{o}{.}\PY{n}{radiance}\PY{p}{)} 
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}13}]:} \PY{n}{hypdata}\PY{o}{.}\PY{n}{dtype}\PY{o}{.}\PY{n}{names}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}13}]:} ('Hyperion\_Band',
+          'Average\_Wavelength\_nm',
+          'Full\_Width\_at\_Half\_the\_Maximum\_FWHM\_nm',
+          'Spatial\_Resolution\_m',
+          'Not\_Calibrated\_X')
+\end{Verbatim}
+        
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}28}]:} \PY{n}{infn} \PY{o}{=} \PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{outdir}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{\PYZus{}buffersamplespecs\PYZus{}calib.hdf5}\PY{l+s}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{n}{firename}\PY{p}{)}
+         \PY{k}{with} \PY{n}{h5py}\PY{o}{.}\PY{n}{File}\PY{p}{(}\PY{n}{infn}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{r}\PY{l+s}{\PYZdq{}}\PY{p}{)} \PY{k}{as} \PY{n}{infh}\PY{p}{:}
+             \PY{n}{spectest} \PY{o}{=} \PY{n}{infh}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{spectrum}\PY{l+s}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{125}\PY{p}{:}\PY{p}{]}
+             \PY{n}{i} \PY{o}{=} \PY{n}{infh}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{i\PYZus{}row\PYZus{}idx}\PY{l+s}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{o}{.}\PY{o}{.}\PY{o}{.}\PY{p}{]}
+             
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}29}]:} \PY{n}{i}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}29}]:} array([226, 130, 377, 281, 330, 135,  40, 319, 368, 597, 156, 243, 321,
+                316, 303, 329, 499, 120, 516, 182, 376,  47, 597, 302, 277, 347,
+                278, 430, 244,  97, 184, 320, 188,  98, 327, 135,  58, 333,  72,
+                384, 326, 171, 227, 318, 283, 496, 790,  60, 108, 312, 748,  13,
+                886,  48, 301, 155, 231, 111, 310, 384, 598, 125,  93, 120, 108,
+                120, 800, 305, 113, 314, 240, 183, 896, 188, 432, 312, 503, 323,
+                391, 188, 289, 401, 181, 278, 748,  78,  71, 806, 897, 180,  66,
+                160, 148, 384, 350, 125, 312, 325, 281, 158])
+\end{Verbatim}
+        
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}53}]:} \PY{n}{spectest}\PY{p}{[}\PY{p}{:}\PY{l+m+mi}{3}\PY{p}{]}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}53}]:} array([[ 9.92500019,  9.625     ,  9.17500019,  8.76249981,  8.05000019,
+                  7.23750019,  6.61250019,  6.4124999 ,  6.26249981,  5.2874999 ,
+                  4.3375001 ,  2.9749999 ,  1.8125    ,  0.71249998,  0.30000001,
+                  0.34999999,  0.28749999,  0.34999999,  0.28749999,  0.0125    ,
+                  0.0125    ,  0.0125    ,  0.0125    ,  0.0125    ,  0.0125    ,
+                  0.0125    ,  0.0125    ,  0.16249999,  0.22499999,  0.2375    ,
+                  0.875     ,  1.4375    ,  1.21249998,  0.125     ,  0.15000001,
+                  1.75      ,  2.5250001 ,  2.01250005,  1.32500005,  1.53750002,
+                  1.88750005,  2.0999999 ,  2.23749995,  2.1624999 ,  2.1875    ,
+                  2.3375001 ,  2.4124999 ,  2.6500001 ,  2.4749999 ,  2.0625    ,
+                  2.0875001 ,  2.36249995,  2.2125001 ,  1.9375    ,  2.125     ,
+                  2.2125001 ,  2.0875001 ,  1.9375    ,  1.77499998,  1.82500005,
+                  1.73749995,  1.5       ,  1.41250002,  1.36249995,  1.11249995,
+                  1.25      ,  1.14999998,  0.64999998,  0.47499999,  0.8125    ,
+                  0.66250002,  0.30000001,  0.0125    ],
+                [ 8.83749962,  8.39999962,  8.0625    ,  7.8499999 ,  7.26249981,
+                  6.6875    ,  6.2750001 ,  5.5250001 ,  5.1875    ,  4.5250001 ,
+                  3.5250001 ,  2.5625    ,  1.67499995,  0.78750002,  0.5       ,
+                  0.075     ,  0.1       ,  0.2       ,  0.2375    ,  0.0125    ,
+                  0.0125    ,  0.05      ,  0.1       ,  0.0125    ,  0.0125    ,
+                  0.0125    ,  0.0125    ,  0.0125    ,  0.0125    ,  0.0125    ,
+                  0.26249999,  0.86250001,  0.73750001,  0.0125    ,  0.0375    ,
+                  0.96249998,  1.58749998,  1.26250005,  0.83749998,  0.92500001,
+                  1.33749998,  1.375     ,  1.46249998,  1.86249995,  1.89999998,
+                  1.5       ,  1.63750005,  2.07500005,  2.        ,  1.77499998,
+                  1.75      ,  1.75      ,  1.57500005,  1.82500005,  2.01250005,
+                  1.76250005,  1.73749995,  1.57500005,  1.51250005,  1.375     ,
+                  1.29999995,  1.0625    ,  1.        ,  1.08749998,  0.96249998,
+                  0.80000001,  0.6875    ,  0.52499998,  0.58749998,  0.48750001,
+                  0.42500001,  0.66250002,  0.96249998],
+                [ 5.23750019,  4.9375    ,  4.625     ,  4.73750019,  4.5250001 ,
+                  4.07499981,  3.88750005,  3.38750005,  3.2874999 ,  3.13750005,
+                  2.5875001 ,  1.57500005,  1.14999998,  0.57499999,  0.25      ,
+                  0.05      ,  0.0875    ,  0.1375    ,  0.125     ,  0.0125    ,
+                  0.025     ,  0.0125    ,  0.0125    ,  0.0875    ,  0.0125    ,
+                  0.0125    ,  0.0125    ,  0.075     ,  0.0875    ,  0.44999999,
+                  0.96249998,  1.67499995,  1.45000005,  0.0375    ,  0.125     ,
+                  1.13750005,  1.86249995,  1.73749995,  1.20000005,  1.39999998,
+                  1.64999998,  1.78750002,  1.8125    ,  2.0999999 ,  2.11249995,
+                  2.0250001 ,  1.95000005,  2.1875    ,  2.        ,  1.85000002,
+                  1.86249995,  1.9375    ,  1.91250002,  1.79999995,  1.88750005,
+                  1.92499995,  1.78750002,  1.51250005,  1.41250002,  1.71249998,
+                  1.67499995,  1.3125    ,  1.28750002,  1.53750002,  1.36249995,
+                  1.14999998,  1.10000002,  0.85000002,  0.96249998,  0.83749998,
+                  0.36250001,  0.57499999,  0.83749998]], dtype=float32)
+\end{Verbatim}
+        
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}13}]:} \PY{n}{a} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}
+         \PY{n}{b} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{20}\PY{p}{)}\PY{p}{)}
+         \PY{n+nb}{zip}\PY{p}{(}\PY{n}{a}\PY{p}{,} \PY{n}{b}\PY{p}{)}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}13}]:} [(0, 10),
+          (1, 11),
+          (2, 12),
+          (3, 13),
+          (4, 14),
+          (5, 15),
+          (6, 16),
+          (7, 17),
+          (8, 18),
+          (9, 19)]
+\end{Verbatim}
+        
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}31}]:} \PY{n}{ii} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{]}
+         \PY{n}{jj} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{364}\PY{p}{,} \PY{l+m+mi}{365}\PY{p}{,} \PY{l+m+mi}{366}\PY{p}{]}
+         \PY{n}{revnorth} \PY{o}{=} \PY{n}{hypsc}\PY{o}{.}\PY{n}{band8}\PY{o}{.}\PY{n}{northing}\PY{p}{[}\PY{p}{:}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}
+         \PY{k}{print}\PY{p}{(}\PY{n}{revnorth}\PY{p}{[}\PY{n}{ii}\PY{p}{]}\PY{p}{)}
+         \PY{k}{print}\PY{p}{(}\PY{n}{hypsc}\PY{o}{.}\PY{n}{band8}\PY{o}{.}\PY{n}{radiance}\PY{p}{[}\PY{n}{np}\PY{o}{.}\PY{n}{meshgrid}\PY{p}{(}\PY{n}{ii}\PY{p}{,} \PY{n}{jj}\PY{p}{)}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[ 7245818.64873127  7245788.65790278  7245758.66707429  7245728.6762458 ]
+[[ 62.32500076  63.97499847  65.94999695  66.125     ]
+ [ 63.97499847  66.17500305  68.75        69.59999847]
+ [ 68.22499847  66.72499847  65.30000305  67.80000305]]
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}14}]:} \PY{n}{a} \PY{o}{=} \PY{n}{numpy}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}15}]:} \PY{n}{a}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}15}]:} array([[[ 0.77037623,  0.44271973,  0.43199284,  0.91572201],
+                 [ 0.88430618,  0.89167981,  0.23585776,  0.91948231],
+                 [ 0.56061851,  0.27729398,  0.50599756,  0.30891287]],
+         
+                [[ 0.35704259,  0.65623393,  0.13807497,  0.53776712],
+                 [ 0.1379312 ,  0.09538436,  0.04020162,  0.70548542],
+                 [ 0.77203863,  0.89904867,  0.2615949 ,  0.82714563]]])
+\end{Verbatim}
+        
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}19}]:} \PY{n}{a}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{l+m+mi}{6}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{p}{:}\PY{p}{]}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}19}]:} array([ 0.77037623,  0.44271973,  0.43199284,  0.91572201])
+\end{Verbatim}
+        
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}20}]:} \PY{n}{a}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{8}\PY{p}{)}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}20}]:} array([[ 0.77037623,  0.44271973,  0.43199284,  0.91572201,  0.88430618,
+                  0.89167981,  0.23585776,  0.91948231],
+                [ 0.56061851,  0.27729398,  0.50599756,  0.30891287,  0.35704259,
+                  0.65623393,  0.13807497,  0.53776712],
+                [ 0.1379312 ,  0.09538436,  0.04020162,  0.70548542,  0.77203863,
+                  0.89904867,  0.2615949 ,  0.82714563]])
+\end{Verbatim}
+        
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{n}{b}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
